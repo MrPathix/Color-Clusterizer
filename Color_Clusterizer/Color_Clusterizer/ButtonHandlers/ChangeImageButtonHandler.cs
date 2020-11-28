@@ -21,7 +21,6 @@ namespace Color_Clusterizer
                 Controller.ClusteredImage?.Dispose();
                 Controller.ClusteredImage = new BitmapWrapper(imageFile);
 
-                mainPictureBox.Image = Controller.ClusteredImage.Bitmap;
                 kmeansPictureBox.Image = null;
                 uncertaintyPictureBox.Image = null;
             }
@@ -29,6 +28,8 @@ namespace Color_Clusterizer
             {
                 MessageBox.Show("Could not load image from file.");
             }
+
+            dialog.Dispose();
         }
     }
 }

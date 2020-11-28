@@ -51,6 +51,8 @@ namespace Color_Clusterizer
             {
                 MessageBox.Show("[ERROR] Couldn't save to file.");
             }
+
+            dialog.Dispose();
         }
     }
 }
