@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace Color_Clusterizer
 {
-    public partial class Form1 : Form
+    public partial class ColorClusterizer : Form
     {
-        public Form1()
+        public ColorClusterizer()
         {
             InitializeComponent();
+            InitializeContextMenus();
         }
 
     }
