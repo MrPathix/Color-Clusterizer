@@ -91,6 +91,7 @@ namespace Color_Clusterizer
             this.changeImageButton.TabIndex = 1;
             this.changeImageButton.Text = "Change image";
             this.changeImageButton.UseVisualStyleBackColor = true;
+            this.changeImageButton.Click += new System.EventHandler(this.ChangeImageButtonHandler);
             // 
             // mainPictureBox
             // 

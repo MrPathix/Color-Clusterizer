@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Color_Clusterizer.Controllers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +13,14 @@ namespace Color_Clusterizer
 {
     public partial class ColorClusterizer : Form
     {
+        private MainViewController Controller { get; }
+
         public ColorClusterizer()
         {
             InitializeComponent();
             InitializeContextMenus();
-        }
 
+            Controller = new MainViewController();
+        }
     }
 }
