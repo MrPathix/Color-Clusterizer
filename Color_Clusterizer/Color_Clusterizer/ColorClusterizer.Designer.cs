@@ -72,6 +72,7 @@ namespace Color_Clusterizer
             this.clusterButton.TabIndex = 3;
             this.clusterButton.Text = "Cluster image to (k) colors";
             this.clusterButton.UseVisualStyleBackColor = true;
+            this.clusterButton.Click += new System.EventHandler(this.ClusterImageButtonHandler);
             // 
             // clusterColorsBar
             // 

@@ -6,7 +6,7 @@ namespace Color_Clusterizer
     public partial class ColorClusterizer
     {
         private Timer refreshTimer;
-        private int FPS = 50;
+        private readonly int FPS = 50;
 
         private void InitializeRefreshTimer()
         {
