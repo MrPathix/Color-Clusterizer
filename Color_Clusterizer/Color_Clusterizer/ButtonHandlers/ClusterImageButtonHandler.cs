@@ -20,9 +20,7 @@ namespace Color_Clusterizer
                 return;
             }
 
-            await Controller.GetKmeansClusteredImage(clusterColorsQuantity, kmeansEpsilon);
-
-            kmeansPictureBox.Image = Controller.KmeansClusteredImage.Scaled(kmeansPictureBox.Width, kmeansPictureBox.Height);
+            kmeansPictureBox.Image = await Controller.GetKmeansClusteredImage(clusterColorsQuantity, kmeansEpsilon);
         }
     }
 }

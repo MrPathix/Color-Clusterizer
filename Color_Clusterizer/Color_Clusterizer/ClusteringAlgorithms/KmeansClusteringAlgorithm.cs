@@ -3,6 +3,7 @@ using PD.BitmapWrapper;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 
 namespace Color_Clusterizer.ClusteringAlgorithms
 {
@@ -20,7 +21,7 @@ namespace Color_Clusterizer.ClusteringAlgorithms
             Report = r;
         }
 
-        public BitmapWrapper Clusterize(BitmapWrapper wrapper)
+        public Bitmap Clusterize(BitmapWrapper wrapper)
         {
             Report.IsOperating = true;
             Report.Progress = 0;
@@ -31,6 +32,9 @@ namespace Color_Clusterizer.ClusteringAlgorithms
 
             int minCentroidDelta = 3 * 255;
             int maxCentroidDelta;
+
+            BitmapWrapper filledBitmap = new(wrapper.Width, wrapper.Height);
+            Report.Bitmap = filledBitmap.Bitmap;
 
             Random rnd = new();
 
@@ -72,12 +76,12 @@ namespace Color_Clusterizer.ClusteringAlgorithms
 
                         // adding pixel to a set identified by the found centroid
                         // and adding color of the centroid to colorCentroids dictionary
-                        
+
                         if (!clusters.ContainsKey(centroid))
                         {
                             clusters.Add(centroid, new());
                         }
-                        
+
                         clusters[centroid].Add(pixel);
                         colorCentroids[pixel] = centroid;
                     }
@@ -137,22 +141,19 @@ namespace Color_Clusterizer.ClusteringAlgorithms
                 int progress = minCentroidDelta == 0 ? 100 : Math.Min(100, 100 * epsilon / minCentroidDelta);
                 
                 if (progress > Report.Progress) Report.Progress = progress;
-            }
 
-            // filling a bitmap with reduced colors
-            BitmapWrapper filledBitmap = new BitmapWrapper(wrapper.Width, wrapper.Height);
-
-            for (int i = 0; i < wrapper.Width; i++)
-            {
-                for (int j = 0; j < wrapper.Height; j++)
+                Parallel.For(0, wrapper.Width * wrapper.Height, i =>
                 {
-                    filledBitmap.SetPixel(i, j, colorCentroids[wrapper.GetPixel(i, j)]);
-                }
+                    int x = i % wrapper.Width;
+                    int y = i / wrapper.Width;
+
+                    filledBitmap.SetPixel(x, y, colorCentroids[wrapper.GetPixel(x, y)]);
+                });
             }
 
             Report.IsOperating = false;
 
-            return filledBitmap;
+            return filledBitmap.Bitmap;
         }
 
         private static int Distance(Color a, Color b)
