@@ -1,7 +1,4 @@
-﻿using Color_Clusterizer.ExternalDependencies;
-using System;
-using System.Drawing;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
 namespace Color_Clusterizer
