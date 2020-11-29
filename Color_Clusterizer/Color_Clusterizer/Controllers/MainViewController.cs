@@ -15,9 +15,9 @@ namespace Color_Clusterizer.Controllers
         {
             KmeansReport = new();
         }
-        public Task<Bitmap> GetKmeansClusteredImage(int k)
+        public Task<Bitmap> GetKmeansClusteredImage(int k, int epsilon)
         {
-            kmeans = new KmeansClusteringAlgorithm(k, KmeansReport);
+            kmeans = new KmeansClusteringAlgorithm(k, epsilon, KmeansReport);
             return Task.Run(() => kmeans.Clusterize(ClusteredImage));
         }
     }

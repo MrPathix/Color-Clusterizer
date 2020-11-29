@@ -36,6 +36,8 @@ namespace Color_Clusterizer
             this.changeImageButton = new System.Windows.Forms.Button();
             this.mainPictureBox = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.kmeansEpsilonLabel = new System.Windows.Forms.Label();
+            this.kmeansEpsilonTrackBar = new System.Windows.Forms.TrackBar();
             this.kmeansLabel = new System.Windows.Forms.Label();
             this.kmeansProgressBar = new System.Windows.Forms.ProgressBar();
             this.kmeansPictureBox = new System.Windows.Forms.PictureBox();
@@ -47,6 +49,7 @@ namespace Color_Clusterizer
             ((System.ComponentModel.ISupportInitialize)(this.clusterColorsBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kmeansEpsilonTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kmeansPictureBox)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uncertaintyPictureBox)).BeginInit();
@@ -112,6 +115,8 @@ namespace Color_Clusterizer
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.kmeansEpsilonLabel);
+            this.panel2.Controls.Add(this.kmeansEpsilonTrackBar);
             this.panel2.Controls.Add(this.kmeansLabel);
             this.panel2.Controls.Add(this.kmeansProgressBar);
             this.panel2.Controls.Add(this.kmeansPictureBox);
@@ -121,11 +126,32 @@ namespace Color_Clusterizer
             this.panel2.Size = new System.Drawing.Size(450, 435);
             this.panel2.TabIndex = 1;
             // 
+            // kmeansEpsilonLabel
+            // 
+            this.kmeansEpsilonLabel.AutoSize = true;
+            this.kmeansEpsilonLabel.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.kmeansEpsilonLabel.Location = new System.Drawing.Point(14, 397);
+            this.kmeansEpsilonLabel.Name = "kmeansEpsilonLabel";
+            this.kmeansEpsilonLabel.Size = new System.Drawing.Size(134, 25);
+            this.kmeansEpsilonLabel.TabIndex = 4;
+            this.kmeansEpsilonLabel.Text = "Epsilon value: 3";
+            // 
+            // kmeansEpsilonTrackBar
+            // 
+            this.kmeansEpsilonTrackBar.Location = new System.Drawing.Point(11, 364);
+            this.kmeansEpsilonTrackBar.Maximum = 20;
+            this.kmeansEpsilonTrackBar.Minimum = 1;
+            this.kmeansEpsilonTrackBar.Name = "kmeansEpsilonTrackBar";
+            this.kmeansEpsilonTrackBar.Size = new System.Drawing.Size(425, 56);
+            this.kmeansEpsilonTrackBar.TabIndex = 3;
+            this.kmeansEpsilonTrackBar.Value = 3;
+            this.kmeansEpsilonTrackBar.Scroll += new System.EventHandler(this.KmeansEpsilonScrollBarValueChanged);
+            // 
             // kmeansLabel
             // 
             this.kmeansLabel.AutoSize = true;
             this.kmeansLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.kmeansLabel.Location = new System.Drawing.Point(71, 32);
+            this.kmeansLabel.Location = new System.Drawing.Point(55, 15);
             this.kmeansLabel.Name = "kmeansLabel";
             this.kmeansLabel.Size = new System.Drawing.Size(342, 28);
             this.kmeansLabel.TabIndex = 2;
@@ -133,20 +159,20 @@ namespace Color_Clusterizer
             // 
             // kmeansProgressBar
             // 
-            this.kmeansProgressBar.Location = new System.Drawing.Point(237, 368);
+            this.kmeansProgressBar.Location = new System.Drawing.Point(235, 311);
             this.kmeansProgressBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.kmeansProgressBar.Name = "kmeansProgressBar";
-            this.kmeansProgressBar.Size = new System.Drawing.Size(192, 35);
+            this.kmeansProgressBar.Size = new System.Drawing.Size(192, 22);
             this.kmeansProgressBar.TabIndex = 1;
             this.kmeansProgressBar.Visible = false;
             // 
             // kmeansPictureBox
             // 
             this.kmeansPictureBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.kmeansPictureBox.Location = new System.Drawing.Point(11, 93);
+            this.kmeansPictureBox.Location = new System.Drawing.Point(11, 53);
             this.kmeansPictureBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.kmeansPictureBox.Name = "kmeansPictureBox";
-            this.kmeansPictureBox.Size = new System.Drawing.Size(425, 324);
+            this.kmeansPictureBox.Size = new System.Drawing.Size(425, 292);
             this.kmeansPictureBox.TabIndex = 0;
             this.kmeansPictureBox.TabStop = false;
             // 
@@ -166,7 +192,7 @@ namespace Color_Clusterizer
             // 
             this.uncertaintyLabel.AutoSize = true;
             this.uncertaintyLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.uncertaintyLabel.Location = new System.Drawing.Point(30, 33);
+            this.uncertaintyLabel.Location = new System.Drawing.Point(14, 19);
             this.uncertaintyLabel.Name = "uncertaintyLabel";
             this.uncertaintyLabel.Size = new System.Drawing.Size(422, 28);
             this.uncertaintyLabel.TabIndex = 2;
@@ -174,20 +200,20 @@ namespace Color_Clusterizer
             // 
             // uncertaintyProgressBar
             // 
-            this.uncertaintyProgressBar.Location = new System.Drawing.Point(237, 376);
+            this.uncertaintyProgressBar.Location = new System.Drawing.Point(235, 322);
             this.uncertaintyProgressBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.uncertaintyProgressBar.Name = "uncertaintyProgressBar";
-            this.uncertaintyProgressBar.Size = new System.Drawing.Size(192, 35);
+            this.uncertaintyProgressBar.Size = new System.Drawing.Size(192, 22);
             this.uncertaintyProgressBar.TabIndex = 1;
             this.uncertaintyProgressBar.Visible = false;
             // 
             // uncertaintyPictureBox
             // 
             this.uncertaintyPictureBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uncertaintyPictureBox.Location = new System.Drawing.Point(11, 97);
+            this.uncertaintyPictureBox.Location = new System.Drawing.Point(11, 64);
             this.uncertaintyPictureBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.uncertaintyPictureBox.Name = "uncertaintyPictureBox";
-            this.uncertaintyPictureBox.Size = new System.Drawing.Size(425, 324);
+            this.uncertaintyPictureBox.Size = new System.Drawing.Size(425, 292);
             this.uncertaintyPictureBox.TabIndex = 0;
             this.uncertaintyPictureBox.TabStop = false;
             // 
@@ -213,6 +239,7 @@ namespace Color_Clusterizer
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kmeansEpsilonTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kmeansPictureBox)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -234,6 +261,8 @@ namespace Color_Clusterizer
         private System.Windows.Forms.PictureBox kmeansPictureBox;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label uncertaintyLabel;
+        private System.Windows.Forms.Label kmeansEpsilonLabel;
+        private System.Windows.Forms.TrackBar kmeansEpsilonTrackBar;
         private System.Windows.Forms.ProgressBar uncertaintyProgressBar;
         private System.Windows.Forms.PictureBox uncertaintyPictureBox;
     }

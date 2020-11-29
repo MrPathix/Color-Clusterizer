@@ -9,12 +9,14 @@ namespace Color_Clusterizer.ClusteringAlgorithms
     class KmeansClusteringAlgorithm : IClusterizer
     {
         private readonly int k;
+        private readonly int epsilon;
 
         public ProgressReport Report { get; }
 
-        public KmeansClusteringAlgorithm(int k, ProgressReport r)
+        public KmeansClusteringAlgorithm(int k, int epsilon, ProgressReport r)
         {
             this.k = k;
+            this.epsilon = epsilon;
             Report = r;
         }
 
@@ -29,7 +31,6 @@ namespace Color_Clusterizer.ClusteringAlgorithms
 
             int minCentroidDelta = 3 * 255;
             int maxCentroidDelta;
-            const int epsilon = 3;
 
             Random rnd = new();
 
