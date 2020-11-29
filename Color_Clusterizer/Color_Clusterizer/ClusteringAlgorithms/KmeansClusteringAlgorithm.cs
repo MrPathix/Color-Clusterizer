@@ -3,6 +3,7 @@ using PD.BitmapWrapper;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 
 namespace Color_Clusterizer.ClusteringAlgorithms
 {
@@ -20,21 +21,26 @@ namespace Color_Clusterizer.ClusteringAlgorithms
             Report = r;
         }
 
-        public BitmapWrapper Clusterize(BitmapWrapper wrapper)
+        public Bitmap Clusterize(BitmapWrapper wrapper)
         {
+            // initialize the progress report instance
             Report.IsOperating = true;
             Report.Progress = 0;
 
+            // initialize the data structures
             List<Color> centroids = new();
-            Dictionary<Color, Color> colorCentroids = new();
+            Dictionary<Color, Color> colorAssignments = new();
             Dictionary<Color, HashSet<Color>> clusters = new();
 
             int minCentroidDelta = 3 * 255;
             int maxCentroidDelta;
 
+            BitmapWrapper filledBitmap = new(wrapper.Width, wrapper.Height);
+            Report.Bitmap = filledBitmap.Bitmap;
+
             Random rnd = new();
 
-            // randomizing first k centroids
+            // randomize first k centroids
             for (int i = 0; i < k; i++)
             {
                 Color randomizedCentroid = Color.FromArgb(rnd.Next(0, 256), rnd.Next(0, 256), rnd.Next(0, 256));
@@ -58,7 +64,7 @@ namespace Color_Clusterizer.ClusteringAlgorithms
                         Color centroid = Color.White;
                         int minDistance = 3 * 255;
 
-                        // finding a centroid for each pixel
+                        // find a centroid for each pixel
                         foreach (var color in centroids)
                         {
                             int distance = Distance(pixel, color);
@@ -70,27 +76,26 @@ namespace Color_Clusterizer.ClusteringAlgorithms
                             }
                         }
 
-                        // adding pixel to a set identified by the found centroid
-                        // and adding color of the centroid to colorCentroids dictionary
-                        
+                        // add pixel to a set identified by the found centroid
+                        // and add color of the centroid to colorCentroids dictionary
                         if (!clusters.ContainsKey(centroid))
                         {
                             clusters.Add(centroid, new());
                         }
-                        
+
                         clusters[centroid].Add(pixel);
-                        colorCentroids[pixel] = centroid;
+                        colorAssignments[pixel] = centroid;
                     }
                 }
 
                 List<Color> newCentroids = new();
 
                 // calculate new centroids for each set
-                foreach (var centroid in centroids)
+                Parallel.ForEach(centroids, centroid =>
                 {
                     if (!clusters.ContainsKey(centroid))
                     {
-                        continue;
+                        return;
                     }
 
                     HashSet<Color> colorSet = clusters[centroid];
@@ -98,9 +103,10 @@ namespace Color_Clusterizer.ClusteringAlgorithms
                     if (colorSet.Count == 0)
                     {
                         newCentroids.Add(centroid);
-                        continue;
+                        return;
                     }
 
+                    // calculate new centroid by averaging all colors in its set
                     long red = 0, green = 0, blue = 0;
 
                     foreach (var color in colorSet)
@@ -126,35 +132,38 @@ namespace Color_Clusterizer.ClusteringAlgorithms
                     if (dist > maxCentroidDelta) maxCentroidDelta = dist;
 
                     newCentroids.Add(newCentroid);
-                }
+                });
 
+                // clear the data structures - we don't need them in this iteration anymore
                 clusters.Clear();
                 centroids.Clear();
 
-                centroids = newCentroids;
+                // update convergence info
                 minCentroidDelta = maxCentroidDelta;
 
+                // swap centroid list
+                centroids = newCentroids;
+
+                // report progress (percent and Bitmap image)
                 int progress = minCentroidDelta == 0 ? 100 : Math.Min(100, 100 * epsilon / minCentroidDelta);
                 
                 if (progress > Report.Progress) Report.Progress = progress;
-            }
 
-            // filling a bitmap with reduced colors
-            BitmapWrapper filledBitmap = new BitmapWrapper(wrapper.Width, wrapper.Height);
-
-            for (int i = 0; i < wrapper.Width; i++)
-            {
-                for (int j = 0; j < wrapper.Height; j++)
+                Parallel.For(0, wrapper.Width * wrapper.Height, i =>
                 {
-                    filledBitmap.SetPixel(i, j, colorCentroids[wrapper.GetPixel(i, j)]);
-                }
+                    int x = i % wrapper.Width;
+                    int y = i / wrapper.Width;
+
+                    filledBitmap.SetPixel(x, y, colorAssignments[wrapper.GetPixel(x, y)]);
+                });
             }
 
             Report.IsOperating = false;
 
-            return filledBitmap;
+            return filledBitmap.Bitmap;
         }
 
+        // discrete metric - works very well for this algorithm
         private static int Distance(Color a, Color b)
         {
             return Math.Abs(a.R - b.R) + Math.Abs(a.G - b.G) + Math.Abs(a.B - b.B);

@@ -30,6 +30,8 @@ namespace Color_Clusterizer
             {
                 kmeansProgressBar.Visible = true;
                 kmeansProgressBar.Value = Controller.KmeansReport.Progress;
+
+                kmeansPictureBox.Image = Controller.KmeansReport.Bitmap;
             }
         }
     }

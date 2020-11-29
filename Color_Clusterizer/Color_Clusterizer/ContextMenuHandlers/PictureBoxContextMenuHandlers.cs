@@ -34,9 +34,9 @@ namespace Color_Clusterizer
             ToolStripItem item = sender as ToolStripItem;
 
             // propagation of uncertainty not implemented yet
-            BitmapWrapper wrapper = item.Name.Equals("kmeans") ? Controller.KmeansClusteredImage : null;
+            PictureBox pb = item.Name.Equals("kmeans") ? kmeansPictureBox : uncertaintyPictureBox;
 
-            if (wrapper is null)
+            if (pb.Image is null)
             {
                 MessageBox.Show("No image to save.");
                 return;
@@ -49,7 +49,7 @@ namespace Color_Clusterizer
             
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                wrapper.Bitmap.Save(dialog.FileName, ImageFormat.Jpeg);
+                pb.Image.Save(dialog.FileName, ImageFormat.Jpeg);
             }
             else
             {

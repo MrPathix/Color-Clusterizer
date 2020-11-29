@@ -109,6 +109,7 @@ namespace Color_Clusterizer
             this.mainPictureBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mainPictureBox.Name = "mainPictureBox";
             this.mainPictureBox.Size = new System.Drawing.Size(869, 599);
+            this.mainPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.mainPictureBox.TabIndex = 0;
             this.mainPictureBox.TabStop = false;
             // 
@@ -173,6 +174,7 @@ namespace Color_Clusterizer
             this.kmeansPictureBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.kmeansPictureBox.Name = "kmeansPictureBox";
             this.kmeansPictureBox.Size = new System.Drawing.Size(425, 292);
+            this.kmeansPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.kmeansPictureBox.TabIndex = 0;
             this.kmeansPictureBox.TabStop = false;
             // 
@@ -214,6 +216,7 @@ namespace Color_Clusterizer
             this.uncertaintyPictureBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.uncertaintyPictureBox.Name = "uncertaintyPictureBox";
             this.uncertaintyPictureBox.Size = new System.Drawing.Size(425, 292);
+            this.uncertaintyPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.uncertaintyPictureBox.TabIndex = 0;
             this.uncertaintyPictureBox.TabStop = false;
             // 
