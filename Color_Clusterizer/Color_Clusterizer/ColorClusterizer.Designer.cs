@@ -59,36 +59,41 @@ namespace Color_Clusterizer
             this.panel1.Controls.Add(this.clusterColorsBar);
             this.panel1.Controls.Add(this.changeImageButton);
             this.panel1.Controls.Add(this.mainPictureBox);
-            this.panel1.Location = new System.Drawing.Point(1, 2);
+            this.panel1.Location = new System.Drawing.Point(1, 3);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(783, 659);
+            this.panel1.Size = new System.Drawing.Size(895, 878);
             this.panel1.TabIndex = 0;
             // 
             // clusterButton
             // 
-            this.clusterButton.Location = new System.Drawing.Point(288, 612);
+            this.clusterButton.Location = new System.Drawing.Point(329, 816);
+            this.clusterButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.clusterButton.Name = "clusterButton";
-            this.clusterButton.Size = new System.Drawing.Size(207, 33);
+            this.clusterButton.Size = new System.Drawing.Size(237, 44);
             this.clusterButton.TabIndex = 3;
-            this.clusterButton.Text = "Cluster image to (k) colors";
+            this.clusterButton.Text = "Cluster image to 1 color(s)";
             this.clusterButton.UseVisualStyleBackColor = true;
             this.clusterButton.Click += new System.EventHandler(this.ClusterImageButtonHandler);
             // 
             // clusterColorsBar
             // 
-            this.clusterColorsBar.Location = new System.Drawing.Point(17, 563);
+            this.clusterColorsBar.Location = new System.Drawing.Point(19, 751);
+            this.clusterColorsBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.clusterColorsBar.Maximum = 64;
             this.clusterColorsBar.Minimum = 1;
             this.clusterColorsBar.Name = "clusterColorsBar";
-            this.clusterColorsBar.Size = new System.Drawing.Size(752, 45);
+            this.clusterColorsBar.Size = new System.Drawing.Size(859, 56);
             this.clusterColorsBar.TabIndex = 2;
             this.clusterColorsBar.Value = 1;
+            this.clusterColorsBar.Scroll += new System.EventHandler(this.ColorScrollBarValueChangedHandler);
             // 
             // changeImageButton
             // 
-            this.changeImageButton.Location = new System.Drawing.Point(12, 474);
+            this.changeImageButton.Location = new System.Drawing.Point(14, 632);
+            this.changeImageButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.changeImageButton.Name = "changeImageButton";
-            this.changeImageButton.Size = new System.Drawing.Size(118, 32);
+            this.changeImageButton.Size = new System.Drawing.Size(135, 43);
             this.changeImageButton.TabIndex = 1;
             this.changeImageButton.Text = "Change image";
             this.changeImageButton.UseVisualStyleBackColor = true;
@@ -97,9 +102,10 @@ namespace Color_Clusterizer
             // mainPictureBox
             // 
             this.mainPictureBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.mainPictureBox.Location = new System.Drawing.Point(10, 11);
+            this.mainPictureBox.Location = new System.Drawing.Point(11, 15);
+            this.mainPictureBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mainPictureBox.Name = "mainPictureBox";
-            this.mainPictureBox.Size = new System.Drawing.Size(760, 449);
+            this.mainPictureBox.Size = new System.Drawing.Size(869, 599);
             this.mainPictureBox.TabIndex = 0;
             this.mainPictureBox.TabStop = false;
             // 
@@ -109,35 +115,38 @@ namespace Color_Clusterizer
             this.panel2.Controls.Add(this.kmeansLabel);
             this.panel2.Controls.Add(this.kmeansProgressBar);
             this.panel2.Controls.Add(this.kmeansPictureBox);
-            this.panel2.Location = new System.Drawing.Point(786, 2);
+            this.panel2.Location = new System.Drawing.Point(898, 3);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(394, 327);
+            this.panel2.Size = new System.Drawing.Size(450, 435);
             this.panel2.TabIndex = 1;
             // 
             // kmeansLabel
             // 
             this.kmeansLabel.AutoSize = true;
             this.kmeansLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.kmeansLabel.Location = new System.Drawing.Point(62, 24);
+            this.kmeansLabel.Location = new System.Drawing.Point(71, 32);
             this.kmeansLabel.Name = "kmeansLabel";
-            this.kmeansLabel.Size = new System.Drawing.Size(276, 21);
+            this.kmeansLabel.Size = new System.Drawing.Size(342, 28);
             this.kmeansLabel.TabIndex = 2;
             this.kmeansLabel.Text = "Clustered using k-means algorithm";
             // 
             // kmeansProgressBar
             // 
-            this.kmeansProgressBar.Location = new System.Drawing.Point(207, 276);
+            this.kmeansProgressBar.Location = new System.Drawing.Point(237, 368);
+            this.kmeansProgressBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.kmeansProgressBar.Name = "kmeansProgressBar";
-            this.kmeansProgressBar.Size = new System.Drawing.Size(168, 26);
+            this.kmeansProgressBar.Size = new System.Drawing.Size(192, 35);
             this.kmeansProgressBar.TabIndex = 1;
             this.kmeansProgressBar.Visible = false;
             // 
             // kmeansPictureBox
             // 
             this.kmeansPictureBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.kmeansPictureBox.Location = new System.Drawing.Point(10, 70);
+            this.kmeansPictureBox.Location = new System.Drawing.Point(11, 93);
+            this.kmeansPictureBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.kmeansPictureBox.Name = "kmeansPictureBox";
-            this.kmeansPictureBox.Size = new System.Drawing.Size(372, 243);
+            this.kmeansPictureBox.Size = new System.Drawing.Size(425, 324);
             this.kmeansPictureBox.TabIndex = 0;
             this.kmeansPictureBox.TabStop = false;
             // 
@@ -147,50 +156,54 @@ namespace Color_Clusterizer
             this.panel3.Controls.Add(this.uncertaintyLabel);
             this.panel3.Controls.Add(this.uncertaintyProgressBar);
             this.panel3.Controls.Add(this.uncertaintyPictureBox);
-            this.panel3.Location = new System.Drawing.Point(786, 332);
+            this.panel3.Location = new System.Drawing.Point(898, 443);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(394, 329);
+            this.panel3.Size = new System.Drawing.Size(450, 438);
             this.panel3.TabIndex = 2;
             // 
             // uncertaintyLabel
             // 
             this.uncertaintyLabel.AutoSize = true;
             this.uncertaintyLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.uncertaintyLabel.Location = new System.Drawing.Point(26, 25);
+            this.uncertaintyLabel.Location = new System.Drawing.Point(30, 33);
             this.uncertaintyLabel.Name = "uncertaintyLabel";
-            this.uncertaintyLabel.Size = new System.Drawing.Size(339, 21);
+            this.uncertaintyLabel.Size = new System.Drawing.Size(422, 28);
             this.uncertaintyLabel.TabIndex = 2;
             this.uncertaintyLabel.Text = "Clustered using propagation of uncertainty";
             // 
             // uncertaintyProgressBar
             // 
-            this.uncertaintyProgressBar.Location = new System.Drawing.Point(207, 282);
+            this.uncertaintyProgressBar.Location = new System.Drawing.Point(237, 376);
+            this.uncertaintyProgressBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.uncertaintyProgressBar.Name = "uncertaintyProgressBar";
-            this.uncertaintyProgressBar.Size = new System.Drawing.Size(168, 26);
+            this.uncertaintyProgressBar.Size = new System.Drawing.Size(192, 35);
             this.uncertaintyProgressBar.TabIndex = 1;
             this.uncertaintyProgressBar.Visible = false;
             // 
             // uncertaintyPictureBox
             // 
             this.uncertaintyPictureBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uncertaintyPictureBox.Location = new System.Drawing.Point(10, 73);
+            this.uncertaintyPictureBox.Location = new System.Drawing.Point(11, 97);
+            this.uncertaintyPictureBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.uncertaintyPictureBox.Name = "uncertaintyPictureBox";
-            this.uncertaintyPictureBox.Size = new System.Drawing.Size(372, 243);
+            this.uncertaintyPictureBox.Size = new System.Drawing.Size(425, 324);
             this.uncertaintyPictureBox.TabIndex = 0;
             this.uncertaintyPictureBox.TabStop = false;
             // 
             // ColorClusterizer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.ClientSize = new System.Drawing.Size(1351, 871);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1200, 700);
-            this.MinimumSize = new System.Drawing.Size(1200, 700);
+            this.MaximumSize = new System.Drawing.Size(1369, 918);
+            this.MinimumSize = new System.Drawing.Size(1369, 918);
             this.Name = "ColorClusterizer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Color Clusterizer";
