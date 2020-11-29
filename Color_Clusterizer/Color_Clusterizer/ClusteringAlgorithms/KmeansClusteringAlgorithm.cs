@@ -90,11 +90,11 @@ namespace Color_Clusterizer.ClusteringAlgorithms
                 List<Color> newCentroids = new();
 
                 // calculate new centroids for each set
-                foreach (var centroid in centroids)
+                Parallel.ForEach(centroids, centroid =>
                 {
                     if (!clusters.ContainsKey(centroid))
                     {
-                        continue;
+                        return;
                     }
 
                     HashSet<Color> colorSet = clusters[centroid];
@@ -102,7 +102,7 @@ namespace Color_Clusterizer.ClusteringAlgorithms
                     if (colorSet.Count == 0)
                     {
                         newCentroids.Add(centroid);
-                        continue;
+                        return;
                     }
 
                     long red = 0, green = 0, blue = 0;
@@ -130,7 +130,7 @@ namespace Color_Clusterizer.ClusteringAlgorithms
                     if (dist > maxCentroidDelta) maxCentroidDelta = dist;
 
                     newCentroids.Add(newCentroid);
-                }
+                });
 
                 clusters.Clear();
                 centroids.Clear();
