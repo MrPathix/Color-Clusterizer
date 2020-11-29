@@ -75,7 +75,7 @@ namespace Color_Clusterizer
             this.clusterButton.Name = "clusterButton";
             this.clusterButton.Size = new System.Drawing.Size(237, 44);
             this.clusterButton.TabIndex = 3;
-            this.clusterButton.Text = "Cluster image to 1 color(s)";
+            this.clusterButton.Text = "Cluster image to 4 color(s)";
             this.clusterButton.UseVisualStyleBackColor = true;
             this.clusterButton.Click += new System.EventHandler(this.ClusterImageButtonHandler);
             // 
@@ -88,7 +88,7 @@ namespace Color_Clusterizer
             this.clusterColorsBar.Name = "clusterColorsBar";
             this.clusterColorsBar.Size = new System.Drawing.Size(859, 56);
             this.clusterColorsBar.TabIndex = 2;
-            this.clusterColorsBar.Value = 1;
+            this.clusterColorsBar.Value = 4;
             this.clusterColorsBar.Scroll += new System.EventHandler(this.ColorScrollBarValueChangedHandler);
             // 
             // changeImageButton
@@ -139,7 +139,7 @@ namespace Color_Clusterizer
             // kmeansEpsilonTrackBar
             // 
             this.kmeansEpsilonTrackBar.Location = new System.Drawing.Point(11, 364);
-            this.kmeansEpsilonTrackBar.Maximum = 20;
+            this.kmeansEpsilonTrackBar.Maximum = 64;
             this.kmeansEpsilonTrackBar.Minimum = 1;
             this.kmeansEpsilonTrackBar.Name = "kmeansEpsilonTrackBar";
             this.kmeansEpsilonTrackBar.Size = new System.Drawing.Size(425, 56);
