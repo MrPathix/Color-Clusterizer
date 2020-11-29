@@ -132,5 +132,23 @@ namespace PD.BitmapWrapper
             Graphics.Dispose();
             BitsHandle.Free();
         }
+
+        public Bitmap Scaled(int width, int height)
+        {
+            BitmapWrapper scaledWrapper = new(width, height);
+
+            Parallel.For(0, width * height, i =>
+            {
+                int x = i % width;
+                int y = i / width;
+
+                int scaled_x = (int)(x * ((float)Width / width));
+                int scaled_y = (int)(y * ((float)Height / height));
+
+                scaledWrapper.SetPixel(x, y, GetPixel(scaled_x, scaled_y));
+            });
+
+            return scaledWrapper.Bitmap;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PD.BitmapWrapper;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
@@ -32,20 +33,23 @@ namespace Color_Clusterizer
         {
             ToolStripItem item = sender as ToolStripItem;
 
-            PictureBox pb = item.Name.Equals("kmeans") ? kmeansPictureBox : uncertaintyPictureBox;
-            Image savedImage = pb.Image;
+            // propagation of uncertainty not implemented yet
+            BitmapWrapper wrapper = item.Name.Equals("kmeans") ? Controller.KmeansClusteredImage : null;
 
-            if (savedImage is null)
+            if (wrapper is null)
             {
                 MessageBox.Show("No image to save.");
                 return;
             }
 
-            SaveFileDialog dialog = new SaveFileDialog();
+            SaveFileDialog dialog = new SaveFileDialog()
+            {
+                Filter = "Image File(*.jpeg)|*.jpeg;"
+            };
             
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                savedImage.Save(dialog.FileName, ImageFormat.Jpeg);
+                wrapper.Bitmap.Save(dialog.FileName, ImageFormat.Jpeg);
             }
             else
             {

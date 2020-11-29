@@ -20,6 +20,7 @@ namespace Color_Clusterizer
 
                 Controller.ClusteredImage?.Dispose();
                 Controller.ClusteredImage = new BitmapWrapper(imageFile);
+                mainPictureBox.Image = Controller.ClusteredImage.Scaled(mainPictureBox.Width, mainPictureBox.Height);
 
                 kmeansPictureBox.Image = null;
                 uncertaintyPictureBox.Image = null;

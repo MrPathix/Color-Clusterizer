@@ -9,16 +9,18 @@ namespace Color_Clusterizer.ClusteringAlgorithms
     class KmeansClusteringAlgorithm : IClusterizer
     {
         private readonly int k;
+        private readonly int epsilon;
 
         public ProgressReport Report { get; }
 
-        public KmeansClusteringAlgorithm(int k, ProgressReport r)
+        public KmeansClusteringAlgorithm(int k, int epsilon, ProgressReport r)
         {
             this.k = k;
+            this.epsilon = epsilon;
             Report = r;
         }
 
-        public Bitmap Clusterize(BitmapWrapper wrapper)
+        public BitmapWrapper Clusterize(BitmapWrapper wrapper)
         {
             Report.IsOperating = true;
             Report.Progress = 0;
@@ -29,7 +31,6 @@ namespace Color_Clusterizer.ClusteringAlgorithms
 
             int minCentroidDelta = 3 * 255;
             int maxCentroidDelta;
-            const int epsilon = 3;
 
             Random rnd = new();
 
@@ -151,7 +152,7 @@ namespace Color_Clusterizer.ClusteringAlgorithms
 
             Report.IsOperating = false;
 
-            return filledBitmap.Bitmap;
+            return filledBitmap;
         }
 
         private static int Distance(Color a, Color b)

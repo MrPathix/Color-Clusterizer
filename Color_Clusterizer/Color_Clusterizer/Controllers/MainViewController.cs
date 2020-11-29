@@ -9,16 +9,24 @@ namespace Color_Clusterizer.Controllers
     class MainViewController
     {
         private IClusterizer kmeans;
+        
         public BitmapWrapper ClusteredImage { get; set; }
+        public BitmapWrapper KmeansClusteredImage { get; set; }
         public ProgressReport KmeansReport { get; protected set; }
+        
         public MainViewController() 
         {
             KmeansReport = new();
         }
-        public Task<Bitmap> GetKmeansClusteredImage(int k)
+        public Task GetKmeansClusteredImage(int k, int epsilon)
         {
-            kmeans = new KmeansClusteringAlgorithm(k, KmeansReport);
-            return Task.Run(() => kmeans.Clusterize(ClusteredImage));
+            KmeansClusteredImage?.Dispose();
+
+            kmeans = new KmeansClusteringAlgorithm(k, epsilon, KmeansReport);
+            return Task.Run(() => 
+            { 
+                KmeansClusteredImage = kmeans.Clusterize(ClusteredImage); 
+            });
         }
     }
 }

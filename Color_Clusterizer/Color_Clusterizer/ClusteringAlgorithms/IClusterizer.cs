@@ -7,6 +7,6 @@ namespace Color_Clusterizer.ClusteringAlgorithms
     public interface IClusterizer
     {
         public ProgressReport Report { get; }
-        public Bitmap Clusterize(BitmapWrapper wrapper);
+        public BitmapWrapper Clusterize(BitmapWrapper wrapper);
     }
 }
