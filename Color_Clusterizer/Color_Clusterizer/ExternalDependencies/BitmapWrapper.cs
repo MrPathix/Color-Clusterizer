@@ -2,14 +2,16 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
-namespace Color_Clusterizer.ExternalDependencies
+namespace PD.BitmapWrapper
 {
     public class BitmapWrapper : IDisposable
     {
         public Bitmap Bitmap { get; private set; }
-        public int[] Pixels { get; private set; }
-        public bool Disposed { get; private set; }
+        private Graphics Graphics { get; set; }
+        private int[] Pixels { get; }
+        private bool Disposed { get; set; }
         public int Height { get; private set; }
         public int Width { get; private set; }
 
@@ -17,52 +19,117 @@ namespace Color_Clusterizer.ExternalDependencies
 
         public BitmapWrapper(int width, int height)
         {
+            // setting Bitmap size
             Width = width;
             Height = height;
+
+            // allocating an array of colors for each pixel
             Pixels = new int[width * height];
+
+            // pinning the array for the garbage coll. handler and creating a new Bitmap which uses the array as its source
             BitsHandle = GCHandle.Alloc(Pixels, GCHandleType.Pinned);
             Bitmap = new Bitmap(width, height, width * 4, PixelFormat.Format32bppPArgb, BitsHandle.AddrOfPinnedObject());
+
+            // creating a Graphics object
+            Graphics = Graphics.FromImage(Bitmap);
         }
 
-        public BitmapWrapper(Bitmap bmp)
+        public BitmapWrapper(Bitmap bitmap)
         {
-            Width = bmp.Width;
-            Height = bmp.Height;
+            // setting Bitmap size
+            Width = bitmap.Width;
+            Height = bitmap.Height;
+
+            // allocating an array of colors for each pixel
             Pixels = new int[Width * Height];
+
+            // pinning the array for the garbage coll. handler and creating a new Bitmap which uses the array as its source
             BitsHandle = GCHandle.Alloc(Pixels, GCHandleType.Pinned);
             Bitmap = new Bitmap(Width, Height, Width * 4, PixelFormat.Format32bppPArgb, BitsHandle.AddrOfPinnedObject());
 
-            for (int i = 0; i < Width; i++)
+            // creating a Graphics object
+            Graphics = Graphics.FromImage(Bitmap);
+
+            // copy colors from the given Bitmap in Parallel
+            unsafe
             {
-                for (int j = 0; j < Height; j++)
+                BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadWrite, bitmap.PixelFormat);
+
+                int bytesPerPixel = Bitmap.GetPixelFormatSize(bitmap.PixelFormat) / 8;
+                int heightInPixels = bitmapData.Height;
+                int widthInBytes = bitmapData.Width * bytesPerPixel;
+                byte* PtrFirstPixel = (byte*)bitmapData.Scan0;
+
+                Parallel.For(0, heightInPixels, y =>
                 {
-                    SetPixel(i, j, bmp.GetPixel(i, j));
-                }
+                    byte* currentLine = PtrFirstPixel + (y * bitmapData.Stride);
+                    for (int x = 0; x < widthInBytes; x += bytesPerPixel)
+                    {
+                        byte oldBlue = currentLine[x];
+                        byte oldGreen = currentLine[x + 1];
+                        byte oldRed = currentLine[x + 2];
+
+                        int color = 255 << 24 | oldRed << 16 | oldGreen << 8 | oldBlue;
+
+                        Pixels[(y * bitmapData.Stride + x) / bytesPerPixel] = color;
+                    }
+                });
+
+                bitmap.UnlockBits(bitmapData);
             }
         }
 
-        public void SetPixel(int x, int y, Color colour)
+        /// <summary>
+        /// Returns Graphics object from the bitmap
+        /// </summary>
+        /// <returns>Graphics</returns>
+        public Graphics GetGraphics()
         {
-            int index = x + (y * Width);
-            int col = colour.ToArgb();
+            if (Graphics == null)
+            {
+                Graphics = Graphics.FromImage(Bitmap);
+            }
 
-            Pixels[index] = col;
+            return Graphics;
         }
 
-        public Color GetPixel(int x, int y)
-        {
-            int index = x + (y * Width);
-            int col = Pixels[index];
-            Color result = Color.FromArgb(col);
+        /// <summary>
+        /// Sets all pixels on the bitmap to solid color given in the "color" parameter.
+        /// </summary>
+        public void Clear(Color color) => GetGraphics().Clear(color);
 
-            return result;
+        /// <summary>
+        /// Sets all pixels on the bitmap to solid white.
+        /// </summary>
+        public void Clear() => Clear(Color.White);
+
+        /// <summary>
+        /// Changes color of the pixel given by parameters (x, y) on the bitmap to a color given by "color" parameter.
+        /// </summary>
+        /// <param name="x">Coordinate of the pixel in x-axis.</param>
+        /// <param name="y">Coordinate of the pixel in y-axis.</param>
+        /// <param name="color">New color set on the pixel.</param>
+        public void SetPixel(int x, int y, Color color)
+        {
+            if (x < 0 || x >= Width || y < 0 || y >= Height) return;
+
+            Pixels[x + (y * Width)] = color.ToArgb();
         }
+
+        /// <summary>
+        /// Gets color of the pixel given by parameters (x, y) on the bitmap.
+        /// </summary>
+        /// <param name="x">Coordinate of the pixel in x-axis.</param>
+        /// <param name="y">Coordinate of the pixel in y-axis.</param>
+        /// <returns>Color</returns>
+        public Color GetPixel(int x, int y) => Color.FromArgb(Pixels[x + (y * Width)]);
 
         public void Dispose()
         {
             if (Disposed) return;
             Disposed = true;
             Bitmap.Dispose();
+            Graphics.Dispose();
             BitsHandle.Free();
         }
     }
