@@ -37,11 +37,11 @@ namespace Color_Clusterizer
             this.mainPictureBox = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.kmeansLabel = new System.Windows.Forms.Label();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.kmeansProgressBar = new System.Windows.Forms.ProgressBar();
             this.kmeansPictureBox = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.uncertaintyLabel = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.uncertaintyProgressBar = new System.Windows.Forms.ProgressBar();
             this.uncertaintyPictureBox = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clusterColorsBar)).BeginInit();
@@ -72,6 +72,7 @@ namespace Color_Clusterizer
             this.clusterButton.TabIndex = 3;
             this.clusterButton.Text = "Cluster image to (k) colors";
             this.clusterButton.UseVisualStyleBackColor = true;
+            this.clusterButton.Click += new System.EventHandler(this.ClusterImageButtonHandler);
             // 
             // clusterColorsBar
             // 
@@ -106,7 +107,7 @@ namespace Color_Clusterizer
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.kmeansLabel);
-            this.panel2.Controls.Add(this.progressBar2);
+            this.panel2.Controls.Add(this.kmeansProgressBar);
             this.panel2.Controls.Add(this.kmeansPictureBox);
             this.panel2.Location = new System.Drawing.Point(786, 2);
             this.panel2.Name = "panel2";
@@ -123,13 +124,13 @@ namespace Color_Clusterizer
             this.kmeansLabel.TabIndex = 2;
             this.kmeansLabel.Text = "Clustered using k-means algorithm";
             // 
-            // progressBar2
+            // kmeansProgressBar
             // 
-            this.progressBar2.Location = new System.Drawing.Point(207, 276);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(168, 26);
-            this.progressBar2.TabIndex = 1;
-            this.progressBar2.Visible = false;
+            this.kmeansProgressBar.Location = new System.Drawing.Point(207, 276);
+            this.kmeansProgressBar.Name = "kmeansProgressBar";
+            this.kmeansProgressBar.Size = new System.Drawing.Size(168, 26);
+            this.kmeansProgressBar.TabIndex = 1;
+            this.kmeansProgressBar.Visible = false;
             // 
             // kmeansPictureBox
             // 
@@ -144,7 +145,7 @@ namespace Color_Clusterizer
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.uncertaintyLabel);
-            this.panel3.Controls.Add(this.progressBar1);
+            this.panel3.Controls.Add(this.uncertaintyProgressBar);
             this.panel3.Controls.Add(this.uncertaintyPictureBox);
             this.panel3.Location = new System.Drawing.Point(786, 332);
             this.panel3.Name = "panel3";
@@ -161,13 +162,13 @@ namespace Color_Clusterizer
             this.uncertaintyLabel.TabIndex = 2;
             this.uncertaintyLabel.Text = "Clustered using propagation of uncertainty";
             // 
-            // progressBar1
+            // uncertaintyProgressBar
             // 
-            this.progressBar1.Location = new System.Drawing.Point(207, 282);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(168, 26);
-            this.progressBar1.TabIndex = 1;
-            this.progressBar1.Visible = false;
+            this.uncertaintyProgressBar.Location = new System.Drawing.Point(207, 282);
+            this.uncertaintyProgressBar.Name = "uncertaintyProgressBar";
+            this.uncertaintyProgressBar.Size = new System.Drawing.Size(168, 26);
+            this.uncertaintyProgressBar.TabIndex = 1;
+            this.uncertaintyProgressBar.Visible = false;
             // 
             // uncertaintyPictureBox
             // 
@@ -216,11 +217,11 @@ namespace Color_Clusterizer
         private System.Windows.Forms.PictureBox mainPictureBox;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label kmeansLabel;
-        private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.ProgressBar kmeansProgressBar;
         private System.Windows.Forms.PictureBox kmeansPictureBox;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label uncertaintyLabel;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar uncertaintyProgressBar;
         private System.Windows.Forms.PictureBox uncertaintyPictureBox;
     }
 }

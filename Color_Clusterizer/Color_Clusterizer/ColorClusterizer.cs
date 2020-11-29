@@ -21,6 +21,9 @@ namespace Color_Clusterizer
             InitializeContextMenus();
 
             Controller = new MainViewController();
+
+            InitializeRefreshTimer();
+            InitializeProgressTimer();
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace Color_Clusterizer.ExternalDependencies
 {
-    class BitmapWrapper : IDisposable
+    public class BitmapWrapper : IDisposable
     {
         public Bitmap Bitmap { get; private set; }
         public int[] Pixels { get; private set; }
