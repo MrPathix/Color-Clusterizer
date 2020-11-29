@@ -88,6 +88,11 @@ namespace Color_Clusterizer.ClusteringAlgorithms
                 // calculate new centroids for each set
                 foreach (var centroid in centroids)
                 {
+                    if (!clusters.ContainsKey(centroid))
+                    {
+                        continue;
+                    }
+
                     HashSet<Color> colorSet = clusters[centroid];
 
                     if (colorSet.Count == 0)
@@ -129,7 +134,9 @@ namespace Color_Clusterizer.ClusteringAlgorithms
                 centroids = newCentroids;
                 minCentroidDelta = maxCentroidDelta;
 
-                Report.Progress = minCentroidDelta == 0 ? 100 : Math.Min(100, 100 * epsilon / minCentroidDelta);
+                int progress = minCentroidDelta == 0 ? 100 : Math.Min(100, 100 * epsilon / minCentroidDelta);
+                
+                if (progress > Report.Progress) Report.Progress = progress;
             }
 
             // filling a bitmap with reduced colors
