@@ -1,5 +1,6 @@
 ﻿using Color_Clusterizer.ClusteringAlgorithms;
 using Color_Clusterizer.ExternalDependencies;
+using Color_Clusterizer.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -10,13 +11,17 @@ namespace Color_Clusterizer.Controllers
 {
     class MainViewController
     {
-        IClusterizer Kmeans;
+        private IClusterizer kmeans;
         public BitmapWrapper ClusteredImage { get; set; }
-        public MainViewController() { }
+        public ProgressReport KmeansReport { get; protected set; }
+        public MainViewController() 
+        {
+            KmeansReport = new();
+        }
         public Task<Bitmap> GetKmeansClusteredImage(int k)
         {
-            Kmeans = new KmeansClusteringAlgorithm(k);
-            return Task.Run(() => Kmeans.Clusterize(ClusteredImage));
+            kmeans = new KmeansClusteringAlgorithm(k, KmeansReport);
+            return Task.Run(() => kmeans.Clusterize(ClusteredImage));
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Color_Clusterizer.ExternalDependencies;
+using Color_Clusterizer.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,13 +10,20 @@ namespace Color_Clusterizer.ClusteringAlgorithms
     class KmeansClusteringAlgorithm : IClusterizer
     {
         private readonly int k;
-        public KmeansClusteringAlgorithm(int k)
+
+        public ProgressReport Report { get; }
+
+        public KmeansClusteringAlgorithm(int k, ProgressReport r)
         {
             this.k = k;
+            Report = r;
         }
 
         public Bitmap Clusterize(BitmapWrapper wrapper)
         {
+            Report.IsOperating = true;
+            Report.Progress = 0;
+
             List<Color> centroids = new();
             Dictionary<Color, Color> colorCentroids = new();
             Dictionary<Color, HashSet<Color>> clusters = new();
@@ -115,9 +123,13 @@ namespace Color_Clusterizer.ClusteringAlgorithms
                     newCentroids.Add(newCentroid);
                 }
 
+                clusters.Clear();
                 centroids.Clear();
+
                 centroids = newCentroids;
                 minCentroidDelta = maxCentroidDelta;
+
+                Report.Progress = minCentroidDelta == 0 ? 100 : Math.Min(100, 100 * epsilon / minCentroidDelta);
             }
 
             // filling a bitmap with reduced colors
@@ -130,6 +142,8 @@ namespace Color_Clusterizer.ClusteringAlgorithms
                     filledBitmap.SetPixel(i, j, colorCentroids[wrapper.GetPixel(i, j)]);
                 }
             }
+
+            Report.IsOperating = false;
 
             return filledBitmap.Bitmap;
         }
