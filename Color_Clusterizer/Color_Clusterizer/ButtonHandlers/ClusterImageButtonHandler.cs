@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Color_Clusterizer
@@ -19,7 +20,9 @@ namespace Color_Clusterizer
                 return;
             }
 
-            kmeansPictureBox.Image = await Controller.GetKmeansClusteredImage(clusterColorsQuantity, kmeansEpsilon);
+            await Controller.GetKmeansClusteredImage(clusterColorsQuantity, kmeansEpsilon);
+
+            kmeansPictureBox.Image = Controller.KmeansClusteredImage.Scaled(kmeansPictureBox.Width, kmeansPictureBox.Height);
         }
     }
 }

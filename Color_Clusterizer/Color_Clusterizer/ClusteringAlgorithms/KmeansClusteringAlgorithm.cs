@@ -20,7 +20,7 @@ namespace Color_Clusterizer.ClusteringAlgorithms
             Report = r;
         }
 
-        public Bitmap Clusterize(BitmapWrapper wrapper)
+        public BitmapWrapper Clusterize(BitmapWrapper wrapper)
         {
             Report.IsOperating = true;
             Report.Progress = 0;
@@ -152,7 +152,7 @@ namespace Color_Clusterizer.ClusteringAlgorithms
 
             Report.IsOperating = false;
 
-            return filledBitmap.Bitmap;
+            return filledBitmap;
         }
 
         private static int Distance(Color a, Color b)
