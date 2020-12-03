@@ -1,4 +1,5 @@
 ﻿using Color_Clusterizer.Controllers;
+using PD.BitmapWrapper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +20,7 @@ namespace Color_Clusterizer
         {
             InitializeComponent();
             InitializeContextMenus();
-
+            InitializeImageGallery();
             Controller = new MainViewController();
 
             InitializeProgressTimer();

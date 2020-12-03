@@ -10,6 +10,7 @@ namespace Color_Clusterizer.Controllers
     {
         private IClusterizer kmeans;
         
+        public bool IsOperating { get => KmeansReport.IsOperating; }
         public BitmapWrapper ClusteredImage { get; set; }
         public ProgressReport KmeansReport { get; protected set; }
         
