@@ -2,6 +2,7 @@
 using PD.BitmapWrapper;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
 
@@ -49,32 +50,51 @@ namespace Color_Clusterizer.ClusteringAlgorithms
                 clusters.Add(randomizedCentroid, new());
             }
 
+            int iter = 0;
+
+            Color[,] colors = new Color[wrapper.Width, wrapper.Height];
+
             // while the algorithm has not converged
             while (minCentroidDelta > epsilon)
             {
+                iter++;
                 maxCentroidDelta = 0;
 
                 // assign each pixel color to a set
+
+                // calculating part - in parallel
+                Parallel.For(0, wrapper.Width * wrapper.Height, t =>
+                {
+                    int i = t % wrapper.Width;
+                    int j = t / wrapper.Width;
+
+                    Color pixel = wrapper.GetPixel(i, j);
+
+                    Color centroid = Color.White;
+                    int minDistance = 3 * 255;
+
+                    // find a centroid for each pixel
+                    foreach (var color in centroids)
+                    {
+                        int distance = Distance(pixel, color);
+
+                        if (distance < minDistance)
+                        {
+                            minDistance = distance;
+                            centroid = color;
+                        }
+                    }
+
+                    colors[i, j] = centroid;
+                });
+
+                // saving results to data structures
                 for (int i = 0; i < wrapper.Width; i++)
                 {
                     for (int j = 0; j < wrapper.Height; j++)
                     {
                         Color pixel = wrapper.GetPixel(i, j);
-
-                        Color centroid = Color.White;
-                        int minDistance = 3 * 255;
-
-                        // find a centroid for each pixel
-                        foreach (var color in centroids)
-                        {
-                            int distance = Distance(pixel, color);
-
-                            if (distance < minDistance)
-                            {
-                                minDistance = distance;
-                                centroid = color;
-                            }
-                        }
+                        Color centroid = colors[i, j];
 
                         // add pixel to a set identified by the found centroid
                         // and add color of the centroid to colorCentroids dictionary

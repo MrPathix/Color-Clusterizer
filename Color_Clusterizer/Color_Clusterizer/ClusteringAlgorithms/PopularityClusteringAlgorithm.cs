@@ -81,12 +81,12 @@ namespace Color_Clusterizer.ClusteringAlgorithms
                 Color pixel = wrapper.GetPixel(x, y);
                 
                 Color color = default;
-                int minDist = 3 * 255 + 1;
+                float minDist = float.MaxValue;
 
                 // for each pixel we need to find its closest centroid
                 foreach (var el in mostFrequentColors)
                 {
-                    int distance = Distance(pixel, el);
+                    float distance = Distance(pixel, el);
 
                     if (distance < minDist)
                     {
@@ -106,9 +106,10 @@ namespace Color_Clusterizer.ClusteringAlgorithms
             return result.Bitmap;
         }
 
-        private static int Distance(Color a, Color b)
+        private static float Distance(Color a, Color b)
         {
-            return Math.Abs(a.R - b.R) + Math.Abs(a.G - b.G) + Math.Abs(a.B - b.B);
+            //return Math.Abs(a.R - b.R) + Math.Abs(a.G - b.G) + Math.Abs(a.B - b.B);
+            return MathF.Sqrt((a.R - b.R) * (a.R - b.R) + (a.G - b.G) * (a.G - b.G) + (a.B - b.B) * (a.B - b.B));
         }
     }
 }

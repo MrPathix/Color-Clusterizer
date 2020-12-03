@@ -9,6 +9,12 @@ namespace Color_Clusterizer
     {
         private void ChangeImageButtonHandler(object sender, EventArgs e)
         {
+            if (Controller.IsOperating)
+            {
+                MessageBox.Show("Cannot load file until the calculations are over.");
+                return;
+            }
+
             OpenFileDialog dialog = new OpenFileDialog()
             {
                 Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png"
