@@ -10,23 +10,30 @@ namespace Color_Clusterizer
     {
         private void InitializeContextMenus()
         {
-            ContextMenuStrip contextKmeans = new ContextMenuStrip();
-            ContextMenuStrip contextUncertainty = new ContextMenuStrip();
+            ContextMenuStrip contextKmeans = new();
+            ContextMenuStrip contextUncertainty = new();
+            ContextMenuStrip contextPopularity = new();
 
-            ToolStripMenuItem kmeansSave = new ToolStripMenuItem("Save to file...");
-            ToolStripMenuItem uncertaintySave = new ToolStripMenuItem("Save to file...");
-            
+            ToolStripMenuItem kmeansSave = new("Save to file...");
+            ToolStripMenuItem uncertaintySave = new("Save to file...");
+            ToolStripMenuItem popularitySave = new("Save to file...");
+
             kmeansSave.Click += ContextMenuSaveImageHandler;
             kmeansSave.Name = "kmeans";
 
             uncertaintySave.Click += ContextMenuSaveImageHandler;
             uncertaintySave.Name = "uncertainty";
 
+            popularitySave.Click += ContextMenuSaveImageHandler;
+            popularitySave.Name = "popularity";
+
             contextKmeans.Items.Add(kmeansSave);
             contextUncertainty.Items.Add(uncertaintySave);
+            contextPopularity.Items.Add(popularitySave);
 
             kmeansPictureBox.ContextMenuStrip = contextKmeans;
             uncertaintyPictureBox.ContextMenuStrip = contextUncertainty;
+            popularityPictureBox.ContextMenuStrip = contextPopularity;
         }
 
         private void ContextMenuSaveImageHandler(object sender, EventArgs e)
@@ -34,11 +41,17 @@ namespace Color_Clusterizer
             ToolStripItem item = sender as ToolStripItem;
 
             // propagation of uncertainty not implemented yet
-            PictureBox pb = item.Name.Equals("kmeans") ? kmeansPictureBox : uncertaintyPictureBox;
+            PictureBox pb = item.Name switch
+            {
+                "kmeans" => kmeansPictureBox,
+                "uncertainty" => uncertaintyPictureBox,
+                "popularity" => popularityPictureBox,
+                _ => null
+            };
 
             if (pb.Image is null)
             {
-                MessageBox.Show("No image to save.");
+                MessageBox.Show($"No image to save.");
                 return;
             }
 
