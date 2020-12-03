@@ -50,14 +50,11 @@ namespace Color_Clusterizer.ClusteringAlgorithms
                 clusters.Add(randomizedCentroid, new());
             }
 
-            int iter = 0;
-
             Color[,] colors = new Color[wrapper.Width, wrapper.Height];
 
             // while the algorithm has not converged
             while (minCentroidDelta > epsilon)
             {
-                iter++;
                 maxCentroidDelta = 0;
 
                 // assign each pixel color to a set
