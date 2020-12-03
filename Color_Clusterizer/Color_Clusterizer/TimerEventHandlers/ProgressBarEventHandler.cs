@@ -33,6 +33,18 @@ namespace Color_Clusterizer
 
                 kmeansPictureBox.Image = Controller.KmeansReport.Bitmap;
             }
+
+            if (!Controller.PopularityReport.IsOperating)
+            {
+                popularityProgressBar.Visible = false;
+            }
+            else
+            {
+                popularityProgressBar.Visible = true;
+                popularityProgressBar.Value = Controller.PopularityReport.Progress;
+
+                popularityPictureBox.Image = Controller.PopularityReport.Bitmap;
+            }
         }
     }
 }

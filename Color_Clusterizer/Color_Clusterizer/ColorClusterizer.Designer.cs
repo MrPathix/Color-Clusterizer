@@ -47,7 +47,7 @@ namespace Color_Clusterizer
             this.uncertaintyPictureBox = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.popularityLabel = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.popularityProgressBar = new System.Windows.Forms.ProgressBar();
             this.popularityPictureBox = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -240,7 +240,7 @@ namespace Color_Clusterizer
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.popularityLabel);
-            this.panel4.Controls.Add(this.progressBar1);
+            this.panel4.Controls.Add(this.popularityProgressBar);
             this.panel4.Controls.Add(this.popularityPictureBox);
             this.panel4.Location = new System.Drawing.Point(457, 637);
             this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -258,14 +258,14 @@ namespace Color_Clusterizer
             this.popularityLabel.TabIndex = 2;
             this.popularityLabel.Text = "Clustered using popularity algorithm";
             // 
-            // progressBar1
+            // popularityProgressBar
             // 
-            this.progressBar1.Location = new System.Drawing.Point(235, 311);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(192, 22);
-            this.progressBar1.TabIndex = 1;
-            this.progressBar1.Visible = false;
+            this.popularityProgressBar.Location = new System.Drawing.Point(235, 311);
+            this.popularityProgressBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.popularityProgressBar.Name = "popularityProgressBar";
+            this.popularityProgressBar.Size = new System.Drawing.Size(192, 22);
+            this.popularityProgressBar.TabIndex = 1;
+            this.popularityProgressBar.Visible = false;
             // 
             // popularityPictureBox
             // 
@@ -425,7 +425,7 @@ namespace Color_Clusterizer
         private System.Windows.Forms.PictureBox uncertaintyPictureBox;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label popularityLabel;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar popularityProgressBar;
         private System.Windows.Forms.PictureBox popularityPictureBox;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
