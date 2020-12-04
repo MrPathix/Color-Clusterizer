@@ -1,5 +1,4 @@
-﻿using PD.BitmapWrapper;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -15,20 +14,21 @@ namespace Color_Clusterizer
                 return;
             }
 
-            OpenFileDialog dialog = new OpenFileDialog()
+            OpenFileDialog dialog = new()
             {
                 Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png"
             };
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                Bitmap imageFile = new Bitmap(Image.FromFile(dialog.FileName));
+                Bitmap imageFile = new(Image.FromFile(dialog.FileName));
 
                 Controller.ClusteredImage?.Dispose();
-                Controller.ClusteredImage = new BitmapWrapper(imageFile);
+                Controller.ClusteredImage = new(imageFile);
                 mainPictureBox.Image = Controller.ClusteredImage.Bitmap;
 
                 kmeansPictureBox.Image = null;
+                popularityPictureBox.Image = null;
                 uncertaintyPictureBox.Image = null;
             }
             else
