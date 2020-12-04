@@ -1,4 +1,4 @@
-﻿using Color_Clusterizer.Models;
+﻿using Color_Reducer.Models;
 using PD.BitmapWrapper;
 using System;
 using System.Collections.Generic;
@@ -6,23 +6,23 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
 
-namespace Color_Clusterizer.ClusteringAlgorithms
+namespace Color_Reducer.ReductionAlgorithms
 {
-    class KmeansClusteringAlgorithm : IClusterizer
+    class KmeansReductionAlgorithm : IReductionAlgorithm
     {
         private readonly int k;
         private readonly int epsilon;
 
         public ProgressReport Report { get; }
 
-        public KmeansClusteringAlgorithm(int k, int epsilon, ProgressReport r)
+        public KmeansReductionAlgorithm(int k, int epsilon, ProgressReport r)
         {
             this.k = k;
             this.epsilon = epsilon;
             Report = r;
         }
 
-        public BitmapWrapper Clusterize(BitmapWrapper wrapper)
+        public BitmapWrapper Reduce(BitmapWrapper wrapper)
         {
             // initialize the progress report instance
             Report.IsOperating = true;

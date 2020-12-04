@@ -5,17 +5,17 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Color_Clusterizer
+namespace Color_Reducer
 {
-    public partial class ColorClusterizer
+    public partial class ColorReducer
     {
         private BitmapWrapper clusteredKmeans;
         private BitmapWrapper clusteredPopularity;
         private BitmapWrapper clusteredUncertainty;
 
-        private void ClusterImageButtonHandler(object sender, EventArgs e)
+        private void ReduceImageButtonHandler(object sender, EventArgs e)
         {
-            if (Controller.ClusteredImage is null)
+            if (Controller.MainImage is null)
             {
                 MessageBox.Show("No image to operate on.");
                 return;
@@ -31,9 +31,9 @@ namespace Color_Clusterizer
             clusteredPopularity?.Dispose();
             clusteredUncertainty?.Dispose();
 
-            Task<BitmapWrapper> kmeansTask = Controller.GetKmeansClusteredImage(clusterColorsQuantity, kmeansEpsilon);
-            Task<BitmapWrapper> popularityTask = Controller.GetPopularityClusteredImage(clusterColorsQuantity);
-            Task<BitmapWrapper> uncertaintyTask = Controller.GetUncertaintyClusteredImage(clusterColorsQuantity, Filter);
+            Task<BitmapWrapper> kmeansTask = Controller.GetKmeansReducedImage(reductionColorsQuantity, kmeansEpsilon);
+            Task<BitmapWrapper> popularityTask = Controller.GetPopularityReducedImage(reductionColorsQuantity);
+            Task<BitmapWrapper> uncertaintyTask = Controller.GetUncertaintyReducedImage(reductionColorsQuantity, Filter);
 
             List<Task> tasks = new();
             tasks.Add(Task.Run(async () => 

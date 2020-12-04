@@ -1,20 +1,24 @@
-﻿using Color_Clusterizer.ClusteringAlgorithms;
-using Color_Clusterizer.FilterMatrices;
-using Color_Clusterizer.Models;
+﻿using Color_Reducer.ReductionAlgorithms;
+using Color_Reducer.FilterMatrices;
+using Color_Reducer.Models;
 using PD.BitmapWrapper;
 using System.Drawing;
 using System.Threading.Tasks;
 
-namespace Color_Clusterizer.Controllers
+namespace Color_Reducer.Controllers
 {
     class MainViewController
     {
-        private IClusterizer kmeans;
-        private IClusterizer popularity;
-        private IClusterizer uncertainty;
+        private IReductionAlgorithm kmeans;
+        private IReductionAlgorithm popularity;
+        private IReductionAlgorithm uncertainty;
 
-        public bool IsOperating { get => KmeansReport.IsOperating || PopularityReport.IsOperating || UncertaintyReport.IsOperating; }
-        public BitmapWrapper ClusteredImage { get; set; }
+        public bool IsOperating 
+        { 
+            get => KmeansReport.IsOperating || PopularityReport.IsOperating || UncertaintyReport.IsOperating; 
+        }
+        public BitmapWrapper MainImage { get; set; }
+
         public ProgressReport KmeansReport { get; protected set; }
         public ProgressReport PopularityReport { get; protected set; }
         public ProgressReport UncertaintyReport { get; protected set; }
@@ -25,22 +29,23 @@ namespace Color_Clusterizer.Controllers
             PopularityReport = new();
             UncertaintyReport = new();
         }
-        public Task<BitmapWrapper> GetKmeansClusteredImage(int k, int epsilon)
+
+        public Task<BitmapWrapper> GetKmeansReducedImage(int k, int epsilon)
         {
-            kmeans = new KmeansClusteringAlgorithm(k, epsilon, KmeansReport);
-            return Task.Run(() => kmeans.Clusterize(ClusteredImage));
+            kmeans = new KmeansReductionAlgorithm(k, epsilon, KmeansReport);
+            return Task.Run(() => kmeans.Reduce(MainImage));
         }
 
-        public Task<BitmapWrapper> GetPopularityClusteredImage(int k)
+        public Task<BitmapWrapper> GetPopularityReducedImage(int k)
         {
-            popularity = new PopularityClusteringAlgorithm(k, PopularityReport);
-            return Task.Run(() => popularity.Clusterize(ClusteredImage));
+            popularity = new PopularityReductionAlgorithm(k, PopularityReport);
+            return Task.Run(() => popularity.Reduce(MainImage));
         }
 
-        public Task<BitmapWrapper> GetUncertaintyClusteredImage(int k, FilterMatrix filter)
+        public Task<BitmapWrapper> GetUncertaintyReducedImage(int k, FilterMatrix filter)
         {
-            uncertainty = new UncertaintyClusteringAlgorithm(k, filter, UncertaintyReport);
-            return Task.Run(() => uncertainty.Clusterize(ClusteredImage));
+            uncertainty = new UncertaintyReductionAlgorithm(k, filter, UncertaintyReport);
+            return Task.Run(() => uncertainty.Reduce(MainImage));
         }
     }
 }

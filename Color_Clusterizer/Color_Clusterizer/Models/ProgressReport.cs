@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Color_Clusterizer.Models
+namespace Color_Reducer.Models
 {
     public class ProgressReport
     {

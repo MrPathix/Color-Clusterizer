@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Color_Clusterizer
+namespace Color_Reducer
 {
     static class Program
     {
@@ -17,7 +17,7 @@ namespace Color_Clusterizer
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ColorClusterizer());
+            Application.Run(new ColorReducer());
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using Color_Clusterizer.FilterMatrices;
+﻿using Color_Reducer.FilterMatrices;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace Color_Clusterizer
+namespace Color_Reducer
 {
-    public partial class ColorClusterizer
+    public partial class ColorReducer
     {
         private FilterMatrix Filter { get; set; }
         private Dictionary<string, FilterMatrix> Filters { get; set; } = new();

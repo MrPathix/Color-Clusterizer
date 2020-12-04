@@ -1,24 +1,24 @@
-﻿using Color_Clusterizer.Models;
+﻿using Color_Reducer.Models;
 using PD.BitmapWrapper;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
 
-namespace Color_Clusterizer.ClusteringAlgorithms
+namespace Color_Reducer.ReductionAlgorithms
 {
-    class PopularityClusteringAlgorithm : IClusterizer
+    class PopularityReductionAlgorithm : IReductionAlgorithm
     {
         private readonly int k;
         public ProgressReport Report { get; }
 
-        public PopularityClusteringAlgorithm(int k, ProgressReport report)
+        public PopularityReductionAlgorithm(int k, ProgressReport report)
         {
             this.k = k;
             Report = report;
         }
 
-        public BitmapWrapper Clusterize(BitmapWrapper wrapper)
+        public BitmapWrapper Reduce(BitmapWrapper wrapper)
         {
             Report.IsOperating = true;
             Report.Progress = 0;

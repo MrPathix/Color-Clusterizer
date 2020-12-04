@@ -5,9 +5,9 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Color_Clusterizer
+namespace Color_Reducer
 {
-    public partial class ColorClusterizer
+    public partial class ColorReducer
     {
         private Dictionary<string, BitmapWrapper> galleryImages = new();
 
@@ -55,13 +55,13 @@ namespace Color_Clusterizer
             uncertaintyPictureBox.Image?.Dispose();
             uncertaintyPictureBox.Image = null;
 
-            if (!galleryImages.ContainsValue(Controller.ClusteredImage) && Controller.ClusteredImage is not null)
+            if (!galleryImages.ContainsValue(Controller.MainImage) && Controller.MainImage is not null)
             {
-                Controller.ClusteredImage.Dispose();
+                Controller.MainImage.Dispose();
             }
 
-            Controller.ClusteredImage = galleryImages[(sender as Button).Name];
-            mainPictureBox.Image = Controller.ClusteredImage.Bitmap;
+            Controller.MainImage = galleryImages[(sender as Button).Name];
+            mainPictureBox.Image = Controller.MainImage.Bitmap;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Color_Clusterizer.FilterMatrices
+﻿namespace Color_Reducer.FilterMatrices
 {
     class BurkesFilterMatrix : FilterMatrix
     {

@@ -2,9 +2,9 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Color_Clusterizer
+namespace Color_Reducer
 {
-    public partial class ColorClusterizer
+    public partial class ColorReducer
     {
         private void ChangeImageButtonHandler(object sender, EventArgs e)
         {
@@ -23,12 +23,17 @@ namespace Color_Clusterizer
             {
                 Bitmap imageFile = new(Image.FromFile(dialog.FileName));
 
-                Controller.ClusteredImage?.Dispose();
-                Controller.ClusteredImage = new(imageFile);
-                mainPictureBox.Image = Controller.ClusteredImage.Bitmap;
+                Controller.MainImage?.Dispose();
+                Controller.MainImage = new(imageFile);
+                mainPictureBox.Image = Controller.MainImage.Bitmap;
 
+                kmeansPictureBox.Image?.Dispose();
                 kmeansPictureBox.Image = null;
+
+                popularityPictureBox.Image?.Dispose();
                 popularityPictureBox.Image = null;
+
+                uncertaintyPictureBox.Image?.Dispose();
                 uncertaintyPictureBox.Image = null;
             }
             else
