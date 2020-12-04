@@ -42,6 +42,10 @@ namespace Color_Clusterizer
             this.kmeansProgressBar = new System.Windows.Forms.ProgressBar();
             this.kmeansPictureBox = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.stuckyRadioButton = new System.Windows.Forms.RadioButton();
+            this.burkesRadioButton = new System.Windows.Forms.RadioButton();
+            this.floydSteinbergRadioButton = new System.Windows.Forms.RadioButton();
             this.uncertaintyLabel = new System.Windows.Forms.Label();
             this.uncertaintyProgressBar = new System.Windows.Forms.ProgressBar();
             this.uncertaintyPictureBox = new System.Windows.Forms.PictureBox();
@@ -81,12 +85,12 @@ namespace Color_Clusterizer
             this.panel1.Location = new System.Drawing.Point(1, 3);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(906, 626);
+            this.panel1.Size = new System.Drawing.Size(906, 559);
             this.panel1.TabIndex = 0;
             // 
             // clusterButton
             // 
-            this.clusterButton.Location = new System.Drawing.Point(651, 571);
+            this.clusterButton.Location = new System.Drawing.Point(646, 497);
             this.clusterButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.clusterButton.Name = "clusterButton";
             this.clusterButton.Size = new System.Drawing.Size(237, 44);
@@ -97,7 +101,7 @@ namespace Color_Clusterizer
             // 
             // changeImageButton
             // 
-            this.changeImageButton.Location = new System.Drawing.Point(14, 571);
+            this.changeImageButton.Location = new System.Drawing.Point(27, 497);
             this.changeImageButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.changeImageButton.Name = "changeImageButton";
             this.changeImageButton.Size = new System.Drawing.Size(135, 43);
@@ -109,17 +113,17 @@ namespace Color_Clusterizer
             // mainPictureBox
             // 
             this.mainPictureBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.mainPictureBox.Location = new System.Drawing.Point(42, 9);
+            this.mainPictureBox.Location = new System.Drawing.Point(53, 9);
             this.mainPictureBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mainPictureBox.Name = "mainPictureBox";
-            this.mainPictureBox.Size = new System.Drawing.Size(818, 550);
+            this.mainPictureBox.Size = new System.Drawing.Size(782, 467);
             this.mainPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.mainPictureBox.TabIndex = 0;
             this.mainPictureBox.TabStop = false;
             // 
             // clusterColorsBar
             // 
-            this.clusterColorsBar.Location = new System.Drawing.Point(195, 571);
+            this.clusterColorsBar.Location = new System.Drawing.Point(211, 502);
             this.clusterColorsBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.clusterColorsBar.Maximum = 64;
             this.clusterColorsBar.Minimum = 1;
@@ -133,7 +137,7 @@ namespace Color_Clusterizer
             // 
             this.kmeansEpsilonLabel.AutoSize = true;
             this.kmeansEpsilonLabel.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.kmeansEpsilonLabel.Location = new System.Drawing.Point(25, 93);
+            this.kmeansEpsilonLabel.Location = new System.Drawing.Point(11, 77);
             this.kmeansEpsilonLabel.Name = "kmeansEpsilonLabel";
             this.kmeansEpsilonLabel.Size = new System.Drawing.Size(134, 25);
             this.kmeansEpsilonLabel.TabIndex = 4;
@@ -141,7 +145,7 @@ namespace Color_Clusterizer
             // 
             // kmeansEpsilonTrackBar
             // 
-            this.kmeansEpsilonTrackBar.Location = new System.Drawing.Point(11, 56);
+            this.kmeansEpsilonTrackBar.Location = new System.Drawing.Point(11, 46);
             this.kmeansEpsilonTrackBar.Maximum = 64;
             this.kmeansEpsilonTrackBar.Minimum = 1;
             this.kmeansEpsilonTrackBar.Name = "kmeansEpsilonTrackBar";
@@ -197,14 +201,62 @@ namespace Color_Clusterizer
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.stuckyRadioButton);
+            this.panel3.Controls.Add(this.burkesRadioButton);
+            this.panel3.Controls.Add(this.floydSteinbergRadioButton);
             this.panel3.Controls.Add(this.uncertaintyLabel);
             this.panel3.Controls.Add(this.uncertaintyProgressBar);
             this.panel3.Controls.Add(this.uncertaintyPictureBox);
-            this.panel3.Location = new System.Drawing.Point(1, 637);
+            this.panel3.Location = new System.Drawing.Point(1, 568);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(450, 354);
+            this.panel3.Size = new System.Drawing.Size(450, 423);
             this.panel3.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 56);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(133, 20);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Select filter matrix:";
+            // 
+            // stuckyRadioButton
+            // 
+            this.stuckyRadioButton.AutoSize = true;
+            this.stuckyRadioButton.Location = new System.Drawing.Point(351, 84);
+            this.stuckyRadioButton.Name = "stuckyRadioButton";
+            this.stuckyRadioButton.Size = new System.Drawing.Size(72, 24);
+            this.stuckyRadioButton.TabIndex = 5;
+            this.stuckyRadioButton.Text = "Stucky";
+            this.stuckyRadioButton.UseVisualStyleBackColor = true;
+            this.stuckyRadioButton.CheckedChanged += new System.EventHandler(this.FilterMatrixRadioButtonsHandler);
+            // 
+            // burkesRadioButton
+            // 
+            this.burkesRadioButton.AutoSize = true;
+            this.burkesRadioButton.Location = new System.Drawing.Point(211, 84);
+            this.burkesRadioButton.Name = "burkesRadioButton";
+            this.burkesRadioButton.Size = new System.Drawing.Size(73, 24);
+            this.burkesRadioButton.TabIndex = 4;
+            this.burkesRadioButton.Text = "Burkes";
+            this.burkesRadioButton.UseVisualStyleBackColor = true;
+            this.burkesRadioButton.CheckedChanged += new System.EventHandler(this.FilterMatrixRadioButtonsHandler);
+            // 
+            // floydSteinbergRadioButton
+            // 
+            this.floydSteinbergRadioButton.AutoSize = true;
+            this.floydSteinbergRadioButton.Checked = true;
+            this.floydSteinbergRadioButton.Location = new System.Drawing.Point(27, 84);
+            this.floydSteinbergRadioButton.Name = "floydSteinbergRadioButton";
+            this.floydSteinbergRadioButton.Size = new System.Drawing.Size(136, 24);
+            this.floydSteinbergRadioButton.TabIndex = 3;
+            this.floydSteinbergRadioButton.TabStop = true;
+            this.floydSteinbergRadioButton.Text = "Floyd-Steinberg";
+            this.floydSteinbergRadioButton.UseVisualStyleBackColor = true;
+            this.floydSteinbergRadioButton.CheckedChanged += new System.EventHandler(this.FilterMatrixRadioButtonsHandler);
             // 
             // uncertaintyLabel
             // 
@@ -218,7 +270,7 @@ namespace Color_Clusterizer
             // 
             // uncertaintyProgressBar
             // 
-            this.uncertaintyProgressBar.Location = new System.Drawing.Point(235, 311);
+            this.uncertaintyProgressBar.Location = new System.Drawing.Point(231, 380);
             this.uncertaintyProgressBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.uncertaintyProgressBar.Name = "uncertaintyProgressBar";
             this.uncertaintyProgressBar.Size = new System.Drawing.Size(192, 22);
@@ -228,7 +280,7 @@ namespace Color_Clusterizer
             // uncertaintyPictureBox
             // 
             this.uncertaintyPictureBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uncertaintyPictureBox.Location = new System.Drawing.Point(11, 53);
+            this.uncertaintyPictureBox.Location = new System.Drawing.Point(11, 122);
             this.uncertaintyPictureBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.uncertaintyPictureBox.Name = "uncertaintyPictureBox";
             this.uncertaintyPictureBox.Size = new System.Drawing.Size(425, 292);
@@ -242,17 +294,17 @@ namespace Color_Clusterizer
             this.panel4.Controls.Add(this.popularityLabel);
             this.panel4.Controls.Add(this.popularityProgressBar);
             this.panel4.Controls.Add(this.popularityPictureBox);
-            this.panel4.Location = new System.Drawing.Point(457, 637);
+            this.panel4.Location = new System.Drawing.Point(457, 568);
             this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(450, 354);
+            this.panel4.Size = new System.Drawing.Size(450, 423);
             this.panel4.TabIndex = 1;
             // 
             // popularityLabel
             // 
             this.popularityLabel.AutoSize = true;
             this.popularityLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.popularityLabel.Location = new System.Drawing.Point(43, 15);
+            this.popularityLabel.Location = new System.Drawing.Point(41, 15);
             this.popularityLabel.Name = "popularityLabel";
             this.popularityLabel.Size = new System.Drawing.Size(361, 28);
             this.popularityLabel.TabIndex = 2;
@@ -260,7 +312,7 @@ namespace Color_Clusterizer
             // 
             // popularityProgressBar
             // 
-            this.popularityProgressBar.Location = new System.Drawing.Point(235, 311);
+            this.popularityProgressBar.Location = new System.Drawing.Point(235, 380);
             this.popularityProgressBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.popularityProgressBar.Name = "popularityProgressBar";
             this.popularityProgressBar.Size = new System.Drawing.Size(192, 22);
@@ -270,7 +322,7 @@ namespace Color_Clusterizer
             // popularityPictureBox
             // 
             this.popularityPictureBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.popularityPictureBox.Location = new System.Drawing.Point(11, 53);
+            this.popularityPictureBox.Location = new System.Drawing.Point(14, 122);
             this.popularityPictureBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.popularityPictureBox.Name = "popularityPictureBox";
             this.popularityPictureBox.Size = new System.Drawing.Size(425, 292);
@@ -435,6 +487,10 @@ namespace Color_Clusterizer
         private System.Windows.Forms.Button miniButton;
         private System.Windows.Forms.Button warsawButton;
         private System.Windows.Forms.Button fireworksButton;
+        private System.Windows.Forms.RadioButton floydSteinbergRadioButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton stuckyRadioButton;
+        private System.Windows.Forms.RadioButton burkesRadioButton;
     }
 }
 

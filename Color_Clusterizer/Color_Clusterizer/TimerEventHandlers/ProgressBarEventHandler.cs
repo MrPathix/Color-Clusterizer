@@ -22,28 +22,25 @@ namespace Color_Clusterizer
 
         private void ProgressBarEventHandler(object sender, EventArgs e)
         {
-            if (!Controller.KmeansReport.IsOperating)
-            {
-                kmeansProgressBar.Visible = false;
-            }
-            else
-            {
-                kmeansProgressBar.Visible = true;
-                kmeansProgressBar.Value = Controller.KmeansReport.Progress;
+            kmeansProgressBar.Visible = Controller.KmeansReport.IsOperating;
+            popularityProgressBar.Visible = Controller.PopularityReport.IsOperating;
+            uncertaintyProgressBar.Visible = Controller.UncertaintyReport.IsOperating;
 
+            if (Controller.KmeansReport.IsOperating)
+            {
+                kmeansProgressBar.Value = Controller.KmeansReport.Progress;
                 kmeansPictureBox.Image = Controller.KmeansReport.Bitmap;
             }
 
-            if (!Controller.PopularityReport.IsOperating)
+            if (Controller.PopularityReport.IsOperating)
             {
-                popularityProgressBar.Visible = false;
-            }
-            else
-            {
-                popularityProgressBar.Visible = true;
                 popularityProgressBar.Value = Controller.PopularityReport.Progress;
+            }
 
-                popularityPictureBox.Image = Controller.PopularityReport.Bitmap;
+            if (Controller.UncertaintyReport.IsOperating)
+            {
+                uncertaintyProgressBar.Value = Controller.PopularityReport.Progress;
+                uncertaintyPictureBox.Image = Controller.UncertaintyReport.Bitmap;
             }
         }
     }

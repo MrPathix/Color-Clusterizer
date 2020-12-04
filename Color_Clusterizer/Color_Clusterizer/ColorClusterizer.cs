@@ -18,6 +18,7 @@ namespace Color_Clusterizer
 
         public ColorClusterizer()
         {
+            InitializeFiltersDictionary();
             InitializeComponent();
             InitializeContextMenus();
             InitializeImageGallery();
