@@ -55,12 +55,12 @@ namespace Color_Reducer
             uncertaintyPictureBox.Image?.Dispose();
             uncertaintyPictureBox.Image = null;
 
-            if (!galleryImages.ContainsValue(Controller.MainImage) && Controller.MainImage is not null)
-            {
-                Controller.MainImage.Dispose();
-            }
+            BitmapWrapper toDispose = galleryImages.ContainsValue(Controller.MainImage) ? null : Controller.MainImage;
 
             Controller.MainImage = galleryImages[(sender as Button).Name];
+
+            toDispose?.Dispose();
+
             mainPictureBox.Image = Controller.MainImage.Bitmap;
         }
     }

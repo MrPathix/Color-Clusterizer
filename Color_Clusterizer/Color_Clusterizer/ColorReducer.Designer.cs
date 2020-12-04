@@ -359,7 +359,7 @@ namespace Color_Reducer
             this.vacationButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.vacationButton.Location = new System.Drawing.Point(3, 3);
             this.vacationButton.Name = "vacationButton";
-            this.vacationButton.Size = new System.Drawing.Size(217, 179);
+            this.vacationButton.Size = new System.Drawing.Size(215, 179);
             this.vacationButton.TabIndex = 0;
             this.vacationButton.UseVisualStyleBackColor = true;
             this.vacationButton.Click += new System.EventHandler(this.ImageButtonHandler);
@@ -368,9 +368,9 @@ namespace Color_Reducer
             // 
             this.mountainButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("mountainButton.BackgroundImage")));
             this.mountainButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.mountainButton.Location = new System.Drawing.Point(226, 3);
+            this.mountainButton.Location = new System.Drawing.Point(224, 3);
             this.mountainButton.Name = "mountainButton";
-            this.mountainButton.Size = new System.Drawing.Size(217, 179);
+            this.mountainButton.Size = new System.Drawing.Size(215, 179);
             this.mountainButton.TabIndex = 1;
             this.mountainButton.UseVisualStyleBackColor = true;
             this.mountainButton.Click += new System.EventHandler(this.ImageButtonHandler);
@@ -381,7 +381,7 @@ namespace Color_Reducer
             this.forestButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.forestButton.Location = new System.Drawing.Point(3, 188);
             this.forestButton.Name = "forestButton";
-            this.forestButton.Size = new System.Drawing.Size(217, 179);
+            this.forestButton.Size = new System.Drawing.Size(215, 179);
             this.forestButton.TabIndex = 2;
             this.forestButton.UseVisualStyleBackColor = true;
             this.forestButton.Click += new System.EventHandler(this.ImageButtonHandler);
@@ -390,9 +390,9 @@ namespace Color_Reducer
             // 
             this.miniButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("miniButton.BackgroundImage")));
             this.miniButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.miniButton.Location = new System.Drawing.Point(226, 188);
+            this.miniButton.Location = new System.Drawing.Point(224, 188);
             this.miniButton.Name = "miniButton";
-            this.miniButton.Size = new System.Drawing.Size(217, 179);
+            this.miniButton.Size = new System.Drawing.Size(215, 179);
             this.miniButton.TabIndex = 3;
             this.miniButton.UseVisualStyleBackColor = true;
             this.miniButton.Click += new System.EventHandler(this.ImageButtonHandler);
@@ -403,7 +403,7 @@ namespace Color_Reducer
             this.warsawButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.warsawButton.Location = new System.Drawing.Point(3, 373);
             this.warsawButton.Name = "warsawButton";
-            this.warsawButton.Size = new System.Drawing.Size(217, 179);
+            this.warsawButton.Size = new System.Drawing.Size(215, 179);
             this.warsawButton.TabIndex = 4;
             this.warsawButton.UseVisualStyleBackColor = true;
             this.warsawButton.Click += new System.EventHandler(this.ImageButtonHandler);
@@ -412,9 +412,9 @@ namespace Color_Reducer
             // 
             this.fireworksButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("fireworksButton.BackgroundImage")));
             this.fireworksButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.fireworksButton.Location = new System.Drawing.Point(226, 373);
+            this.fireworksButton.Location = new System.Drawing.Point(224, 373);
             this.fireworksButton.Name = "fireworksButton";
-            this.fireworksButton.Size = new System.Drawing.Size(217, 179);
+            this.fireworksButton.Size = new System.Drawing.Size(215, 179);
             this.fireworksButton.TabIndex = 5;
             this.fireworksButton.Text = "button8";
             this.fireworksButton.UseVisualStyleBackColor = true;

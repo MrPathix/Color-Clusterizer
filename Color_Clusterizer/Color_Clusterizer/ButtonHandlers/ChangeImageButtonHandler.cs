@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PD.BitmapWrapper;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -23,7 +24,9 @@ namespace Color_Reducer
             {
                 Bitmap imageFile = new(Image.FromFile(dialog.FileName));
 
-                Controller.MainImage?.Dispose();
+                BitmapWrapper toDispose = galleryImages.ContainsValue(Controller.MainImage) ? null : Controller.MainImage;
+                toDispose?.Dispose();
+
                 Controller.MainImage = new(imageFile);
                 mainPictureBox.Image = Controller.MainImage.Bitmap;
 
