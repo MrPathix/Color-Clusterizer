@@ -19,7 +19,7 @@ namespace Color_Clusterizer.ClusteringAlgorithms
             Report = report;
         }
 
-        public Bitmap Clusterize(BitmapWrapper wrapper)
+        public BitmapWrapper Clusterize(BitmapWrapper wrapper)
         {
             Report.Progress = 0;
             Report.IsOperating = true;
@@ -81,7 +81,7 @@ namespace Color_Clusterizer.ClusteringAlgorithms
             Report.Progress = 100;
             Report.IsOperating = false;
 
-            return result.Bitmap;
+            return result;
         }
 
         private static Color Approximate(Color c, int k)

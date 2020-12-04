@@ -22,7 +22,7 @@ namespace Color_Clusterizer.ClusteringAlgorithms
             Report = r;
         }
 
-        public Bitmap Clusterize(BitmapWrapper wrapper)
+        public BitmapWrapper Clusterize(BitmapWrapper wrapper)
         {
             // initialize the progress report instance
             Report.IsOperating = true;
@@ -177,7 +177,7 @@ namespace Color_Clusterizer.ClusteringAlgorithms
 
             Report.IsOperating = false;
 
-            return filledBitmap.Bitmap;
+            return filledBitmap;
         }
 
         // discrete metric - works very well for this algorithm

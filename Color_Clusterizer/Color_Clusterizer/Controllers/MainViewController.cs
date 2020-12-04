@@ -25,19 +25,19 @@ namespace Color_Clusterizer.Controllers
             PopularityReport = new();
             UncertaintyReport = new();
         }
-        public Task<Bitmap> GetKmeansClusteredImage(int k, int epsilon)
+        public Task<BitmapWrapper> GetKmeansClusteredImage(int k, int epsilon)
         {
             kmeans = new KmeansClusteringAlgorithm(k, epsilon, KmeansReport);
             return Task.Run(() => kmeans.Clusterize(ClusteredImage));
         }
 
-        public Task<Bitmap> GetPopularityClusteredImage(int k)
+        public Task<BitmapWrapper> GetPopularityClusteredImage(int k)
         {
             popularity = new PopularityClusteringAlgorithm(k, PopularityReport);
             return Task.Run(() => popularity.Clusterize(ClusteredImage));
         }
 
-        public Task<Bitmap> GetUncertaintyClusteredImage(int k, FilterMatrix filter)
+        public Task<BitmapWrapper> GetUncertaintyClusteredImage(int k, FilterMatrix filter)
         {
             uncertainty = new UncertaintyClusteringAlgorithm(k, filter, UncertaintyReport);
             return Task.Run(() => uncertainty.Clusterize(ClusteredImage));

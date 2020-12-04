@@ -18,7 +18,7 @@ namespace Color_Clusterizer.ClusteringAlgorithms
             Report = report;
         }
 
-        public Bitmap Clusterize(BitmapWrapper wrapper)
+        public BitmapWrapper Clusterize(BitmapWrapper wrapper)
         {
             Report.IsOperating = true;
             Report.Progress = 0;
@@ -103,7 +103,7 @@ namespace Color_Clusterizer.ClusteringAlgorithms
             Report.Progress = 100;
             Report.IsOperating = false;
 
-            return result.Bitmap;
+            return result;
         }
 
         private static float Distance(Color a, Color b)
