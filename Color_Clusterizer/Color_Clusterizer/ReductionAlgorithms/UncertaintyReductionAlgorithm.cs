@@ -1,25 +1,25 @@
-﻿using Color_Clusterizer.FilterMatrices;
-using Color_Clusterizer.Models;
+﻿using Color_Reducer.FilterMatrices;
+using Color_Reducer.Models;
 using PD.BitmapWrapper;
 using System;
 using System.Drawing;
 
-namespace Color_Clusterizer.ClusteringAlgorithms
+namespace Color_Reducer.ReductionAlgorithms
 {
-    class UncertaintyClusteringAlgorithm : IClusterizer
+    class UncertaintyReductionAlgorithm : IReductionAlgorithm
     {
         private readonly int k;
         private readonly FilterMatrix filter;
         public ProgressReport Report { get; }
 
-        public UncertaintyClusteringAlgorithm(int k, FilterMatrix filter, ProgressReport report)
+        public UncertaintyReductionAlgorithm(int k, FilterMatrix filter, ProgressReport report)
         {
             this.k = k;
             this.filter = filter;
             Report = report;
         }
 
-        public BitmapWrapper Clusterize(BitmapWrapper wrapper)
+        public BitmapWrapper Reduce(BitmapWrapper wrapper)
         {
             Report.Progress = 0;
             Report.IsOperating = true;

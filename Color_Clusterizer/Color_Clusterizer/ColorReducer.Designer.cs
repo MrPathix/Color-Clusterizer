@@ -1,7 +1,7 @@
 ﻿
-namespace Color_Clusterizer
+namespace Color_Reducer
 {
-    partial class ColorClusterizer
+    partial class ColorReducer
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,9 +29,9 @@ namespace Color_Clusterizer
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ColorClusterizer));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ColorReducer));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.clusterButton = new System.Windows.Forms.Button();
+            this.reductionButton = new System.Windows.Forms.Button();
             this.changeImageButton = new System.Windows.Forms.Button();
             this.mainPictureBox = new System.Windows.Forms.PictureBox();
             this.clusterColorsBar = new System.Windows.Forms.TrackBar();
@@ -78,7 +78,7 @@ namespace Color_Clusterizer
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.clusterButton);
+            this.panel1.Controls.Add(this.reductionButton);
             this.panel1.Controls.Add(this.changeImageButton);
             this.panel1.Controls.Add(this.mainPictureBox);
             this.panel1.Controls.Add(this.clusterColorsBar);
@@ -88,16 +88,16 @@ namespace Color_Clusterizer
             this.panel1.Size = new System.Drawing.Size(906, 559);
             this.panel1.TabIndex = 0;
             // 
-            // clusterButton
+            // reductionButton
             // 
-            this.clusterButton.Location = new System.Drawing.Point(646, 497);
-            this.clusterButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.clusterButton.Name = "clusterButton";
-            this.clusterButton.Size = new System.Drawing.Size(237, 44);
-            this.clusterButton.TabIndex = 3;
-            this.clusterButton.Text = "Cluster image to 4 color(s)";
-            this.clusterButton.UseVisualStyleBackColor = true;
-            this.clusterButton.Click += new System.EventHandler(this.ClusterImageButtonHandler);
+            this.reductionButton.Location = new System.Drawing.Point(646, 497);
+            this.reductionButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.reductionButton.Name = "reductionButton";
+            this.reductionButton.Size = new System.Drawing.Size(237, 44);
+            this.reductionButton.TabIndex = 3;
+            this.reductionButton.Text = "Cluster image to 4 color(s)";
+            this.reductionButton.UseVisualStyleBackColor = true;
+            this.reductionButton.Click += new System.EventHandler(this.ReduceImageButtonHandler);
             // 
             // changeImageButton
             // 
@@ -113,7 +113,7 @@ namespace Color_Clusterizer
             // mainPictureBox
             // 
             this.mainPictureBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.mainPictureBox.Location = new System.Drawing.Point(53, 9);
+            this.mainPictureBox.Location = new System.Drawing.Point(58, 9);
             this.mainPictureBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mainPictureBox.Name = "mainPictureBox";
             this.mainPictureBox.Size = new System.Drawing.Size(782, 467);
@@ -165,18 +165,18 @@ namespace Color_Clusterizer
             this.panel2.Location = new System.Drawing.Point(913, 568);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(450, 423);
+            this.panel2.Size = new System.Drawing.Size(449, 423);
             this.panel2.TabIndex = 1;
             // 
             // kmeansLabel
             // 
             this.kmeansLabel.AutoSize = true;
             this.kmeansLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.kmeansLabel.Location = new System.Drawing.Point(55, 15);
+            this.kmeansLabel.Location = new System.Drawing.Point(59, 15);
             this.kmeansLabel.Name = "kmeansLabel";
-            this.kmeansLabel.Size = new System.Drawing.Size(342, 28);
+            this.kmeansLabel.Size = new System.Drawing.Size(334, 28);
             this.kmeansLabel.TabIndex = 2;
-            this.kmeansLabel.Text = "Clustered using k-means algorithm";
+            this.kmeansLabel.Text = "Reduced using k-means algorithm";
             // 
             // kmeansProgressBar
             // 
@@ -262,11 +262,11 @@ namespace Color_Clusterizer
             // 
             this.uncertaintyLabel.AutoSize = true;
             this.uncertaintyLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.uncertaintyLabel.Location = new System.Drawing.Point(14, 15);
+            this.uncertaintyLabel.Location = new System.Drawing.Point(18, 15);
             this.uncertaintyLabel.Name = "uncertaintyLabel";
-            this.uncertaintyLabel.Size = new System.Drawing.Size(422, 28);
+            this.uncertaintyLabel.Size = new System.Drawing.Size(414, 28);
             this.uncertaintyLabel.TabIndex = 2;
-            this.uncertaintyLabel.Text = "Clustered using propagation of uncertainty";
+            this.uncertaintyLabel.Text = "Reduced using propagation of uncertainty";
             // 
             // uncertaintyProgressBar
             // 
@@ -304,11 +304,11 @@ namespace Color_Clusterizer
             // 
             this.popularityLabel.AutoSize = true;
             this.popularityLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.popularityLabel.Location = new System.Drawing.Point(41, 15);
+            this.popularityLabel.Location = new System.Drawing.Point(47, 15);
             this.popularityLabel.Name = "popularityLabel";
-            this.popularityLabel.Size = new System.Drawing.Size(361, 28);
+            this.popularityLabel.Size = new System.Drawing.Size(353, 28);
             this.popularityLabel.TabIndex = 2;
-            this.popularityLabel.Text = "Clustered using popularity algorithm";
+            this.popularityLabel.Text = "Reduced using popularity algorithm";
             // 
             // popularityProgressBar
             // 
@@ -359,7 +359,7 @@ namespace Color_Clusterizer
             this.vacationButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.vacationButton.Location = new System.Drawing.Point(3, 3);
             this.vacationButton.Name = "vacationButton";
-            this.vacationButton.Size = new System.Drawing.Size(217, 179);
+            this.vacationButton.Size = new System.Drawing.Size(215, 179);
             this.vacationButton.TabIndex = 0;
             this.vacationButton.UseVisualStyleBackColor = true;
             this.vacationButton.Click += new System.EventHandler(this.ImageButtonHandler);
@@ -368,9 +368,9 @@ namespace Color_Clusterizer
             // 
             this.mountainButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("mountainButton.BackgroundImage")));
             this.mountainButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.mountainButton.Location = new System.Drawing.Point(226, 3);
+            this.mountainButton.Location = new System.Drawing.Point(224, 3);
             this.mountainButton.Name = "mountainButton";
-            this.mountainButton.Size = new System.Drawing.Size(217, 179);
+            this.mountainButton.Size = new System.Drawing.Size(215, 179);
             this.mountainButton.TabIndex = 1;
             this.mountainButton.UseVisualStyleBackColor = true;
             this.mountainButton.Click += new System.EventHandler(this.ImageButtonHandler);
@@ -381,7 +381,7 @@ namespace Color_Clusterizer
             this.forestButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.forestButton.Location = new System.Drawing.Point(3, 188);
             this.forestButton.Name = "forestButton";
-            this.forestButton.Size = new System.Drawing.Size(217, 179);
+            this.forestButton.Size = new System.Drawing.Size(215, 179);
             this.forestButton.TabIndex = 2;
             this.forestButton.UseVisualStyleBackColor = true;
             this.forestButton.Click += new System.EventHandler(this.ImageButtonHandler);
@@ -390,9 +390,9 @@ namespace Color_Clusterizer
             // 
             this.miniButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("miniButton.BackgroundImage")));
             this.miniButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.miniButton.Location = new System.Drawing.Point(226, 188);
+            this.miniButton.Location = new System.Drawing.Point(224, 188);
             this.miniButton.Name = "miniButton";
-            this.miniButton.Size = new System.Drawing.Size(217, 179);
+            this.miniButton.Size = new System.Drawing.Size(215, 179);
             this.miniButton.TabIndex = 3;
             this.miniButton.UseVisualStyleBackColor = true;
             this.miniButton.Click += new System.EventHandler(this.ImageButtonHandler);
@@ -403,7 +403,7 @@ namespace Color_Clusterizer
             this.warsawButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.warsawButton.Location = new System.Drawing.Point(3, 373);
             this.warsawButton.Name = "warsawButton";
-            this.warsawButton.Size = new System.Drawing.Size(217, 179);
+            this.warsawButton.Size = new System.Drawing.Size(215, 179);
             this.warsawButton.TabIndex = 4;
             this.warsawButton.UseVisualStyleBackColor = true;
             this.warsawButton.Click += new System.EventHandler(this.ImageButtonHandler);
@@ -412,19 +412,19 @@ namespace Color_Clusterizer
             // 
             this.fireworksButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("fireworksButton.BackgroundImage")));
             this.fireworksButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.fireworksButton.Location = new System.Drawing.Point(226, 373);
+            this.fireworksButton.Location = new System.Drawing.Point(224, 373);
             this.fireworksButton.Name = "fireworksButton";
-            this.fireworksButton.Size = new System.Drawing.Size(217, 179);
+            this.fireworksButton.Size = new System.Drawing.Size(215, 179);
             this.fireworksButton.TabIndex = 5;
             this.fireworksButton.Text = "button8";
             this.fireworksButton.UseVisualStyleBackColor = true;
             this.fireworksButton.Click += new System.EventHandler(this.ImageButtonHandler);
             // 
-            // ColorClusterizer
+            // ColorReducer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1367, 998);
+            this.ClientSize = new System.Drawing.Size(1364, 994);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel4);
@@ -433,11 +433,11 @@ namespace Color_Clusterizer
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1385, 1045);
-            this.MinimumSize = new System.Drawing.Size(1385, 1045);
-            this.Name = "ColorClusterizer";
+            this.MaximumSize = new System.Drawing.Size(1382, 1041);
+            this.MinimumSize = new System.Drawing.Size(1382, 1041);
+            this.Name = "ColorReducer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Color Clusterizer";
+            this.Text = "Color Reducer";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).EndInit();
@@ -461,7 +461,7 @@ namespace Color_Clusterizer
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button clusterButton;
+        private System.Windows.Forms.Button reductionButton;
         private System.Windows.Forms.TrackBar clusterColorsBar;
         private System.Windows.Forms.Button changeImageButton;
         private System.Windows.Forms.PictureBox mainPictureBox;

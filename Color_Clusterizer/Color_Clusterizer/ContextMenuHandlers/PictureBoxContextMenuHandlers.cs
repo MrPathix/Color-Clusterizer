@@ -4,9 +4,9 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace Color_Clusterizer
+namespace Color_Reducer
 {
-    public partial class ColorClusterizer
+    public partial class ColorReducer
     {
         private void InitializeContextMenus()
         {
@@ -44,7 +44,7 @@ namespace Color_Clusterizer
 
         private void ContextMenuSaveMainImage(object sender, EventArgs e)
         {
-            if (Controller.ClusteredImage is null)
+            if (Controller.MainImage is null)
             {
                 MessageBox.Show($"No image to save.");
                 return;
@@ -57,7 +57,7 @@ namespace Color_Clusterizer
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                Controller.ClusteredImage.Bitmap.Save(dialog.FileName, ImageFormat.Jpeg);
+                Controller.MainImage.Bitmap.Save(dialog.FileName, ImageFormat.Jpeg);
             }
             else
             {

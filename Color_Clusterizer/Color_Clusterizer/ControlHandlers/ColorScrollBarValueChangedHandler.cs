@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Color_Clusterizer
+namespace Color_Reducer
 {
-    public partial class ColorClusterizer
+    public partial class ColorReducer
     {
-        private int clusterColorsQuantity = 4;
+        private int reductionColorsQuantity = 4;
         private void ColorScrollBarValueChangedHandler(object sender, EventArgs e)
         {
             TrackBar tb = sender as TrackBar;
 
-            clusterColorsQuantity = tb.Value;
+            reductionColorsQuantity = tb.Value;
 
-            clusterButton.Text = $"Cluster image to {clusterColorsQuantity} color(s)";
+            reductionButton.Text = $"Cluster image to {reductionColorsQuantity} color(s)";
         }
     }
 }

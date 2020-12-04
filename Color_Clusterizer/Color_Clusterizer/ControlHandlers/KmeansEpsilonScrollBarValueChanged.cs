@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Color_Clusterizer
+namespace Color_Reducer
 {
-    public partial class ColorClusterizer
+    public partial class ColorReducer
     {
         private int kmeansEpsilon = 3;
         private void KmeansEpsilonScrollBarValueChanged(object sender, EventArgs e)
