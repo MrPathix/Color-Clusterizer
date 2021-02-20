@@ -32,6 +32,7 @@ namespace Color_Reducer
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ColorReducer));
             this.panel1 = new System.Windows.Forms.Panel();
             this.reductionButton = new System.Windows.Forms.Button();
+            this.createImageButton = new System.Windows.Forms.Button();
             this.changeImageButton = new System.Windows.Forms.Button();
             this.mainPictureBox = new System.Windows.Forms.PictureBox();
             this.clusterColorsBar = new System.Windows.Forms.TrackBar();
@@ -79,6 +80,7 @@ namespace Color_Reducer
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.reductionButton);
+            this.panel1.Controls.Add(this.createImageButton);
             this.panel1.Controls.Add(this.changeImageButton);
             this.panel1.Controls.Add(this.mainPictureBox);
             this.panel1.Controls.Add(this.clusterColorsBar);
@@ -90,21 +92,32 @@ namespace Color_Reducer
             // 
             // reductionButton
             // 
-            this.reductionButton.Location = new System.Drawing.Point(646, 497);
+            this.reductionButton.Location = new System.Drawing.Point(691, 497);
             this.reductionButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.reductionButton.Name = "reductionButton";
-            this.reductionButton.Size = new System.Drawing.Size(237, 44);
+            this.reductionButton.Size = new System.Drawing.Size(204, 44);
             this.reductionButton.TabIndex = 3;
             this.reductionButton.Text = "Cluster image to 4 color(s)";
             this.reductionButton.UseVisualStyleBackColor = true;
             this.reductionButton.Click += new System.EventHandler(this.ReduceImageButtonHandler);
             // 
+            // createImageButton
+            // 
+            this.createImageButton.Location = new System.Drawing.Point(140, 497);
+            this.createImageButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.createImageButton.Name = "createImageButton";
+            this.createImageButton.Size = new System.Drawing.Size(116, 43);
+            this.createImageButton.TabIndex = 1;
+            this.createImageButton.Text = "Create image";
+            this.createImageButton.UseVisualStyleBackColor = true;
+            this.createImageButton.Click += new System.EventHandler(this.CreateImageButtonHandler);
+            // 
             // changeImageButton
             // 
-            this.changeImageButton.Location = new System.Drawing.Point(27, 497);
+            this.changeImageButton.Location = new System.Drawing.Point(10, 497);
             this.changeImageButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.changeImageButton.Name = "changeImageButton";
-            this.changeImageButton.Size = new System.Drawing.Size(135, 43);
+            this.changeImageButton.Size = new System.Drawing.Size(116, 43);
             this.changeImageButton.TabIndex = 1;
             this.changeImageButton.Text = "Change image";
             this.changeImageButton.UseVisualStyleBackColor = true;
@@ -123,7 +136,7 @@ namespace Color_Reducer
             // 
             // clusterColorsBar
             // 
-            this.clusterColorsBar.Location = new System.Drawing.Point(211, 502);
+            this.clusterColorsBar.Location = new System.Drawing.Point(272, 502);
             this.clusterColorsBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.clusterColorsBar.Maximum = 64;
             this.clusterColorsBar.Minimum = 1;
@@ -491,6 +504,7 @@ namespace Color_Reducer
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton stuckyRadioButton;
         private System.Windows.Forms.RadioButton burkesRadioButton;
+        private System.Windows.Forms.Button createImageButton;
     }
 }
 
